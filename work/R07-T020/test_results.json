@@ -1,0 +1,37 @@
+{
+  "task_id": "R07-T020",
+  "exercise": "exercises/practice/secret-handshake",
+  "decision_table": [
+    {
+      "name": "wink for 1",
+      "input": {
+        "number": 1
+      },
+      "expected": [
+        "wink"
+      ]
+    },
+    {
+      "name": "double blink for 10",
+      "input": {
+        "number": 2
+      },
+      "expected": [
+        "double blink"
+      ]
+    },
+    {
+      "name": "close your eyes for 100",
+      "input": {
+        "number": 4
+      },
+      "expected": [
+        "close your eyes"
+      ]
+    }
+  ],
+  "executed_tests": 11,
+  "all_decision_cases_passed": true,
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
