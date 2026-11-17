@@ -1,0 +1,21 @@
+{
+  "task_id": "R07-T017",
+  "exercise": "exercises/practice/forth",
+  "named_cases": [
+    "parsing and numbers:numbers just get pushed onto the stack",
+    "parsing and numbers:pushes negative numbers onto the stack",
+    "addition:can add two numbers"
+  ],
+  "executed_tests": 54,
+  "micro_example_1": {
+    "input": "{\"stack\": [1, 2]} | .stack += [3]",
+    "output": "{\"stack\":[1,2,3]}"
+  },
+  "micro_example_2": {
+    "input": "try ({\"stack\": [1, 2]} | .stack += 3) catch .",
+    "output": "\"array ([1,2]) and number (3) cannot be added\""
+  },
+  "guidance_topic": "Array construction and concatenation in stack operations",
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
