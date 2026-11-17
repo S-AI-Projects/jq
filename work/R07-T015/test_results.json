@@ -1,0 +1,47 @@
+{
+  "task_id": "R07-T015",
+  "exercise": "exercises/practice/satellite",
+  "named_cases": [
+    "Empty tree",
+    "Tree with one item",
+    "Tree with many items"
+  ],
+  "executed_tests": 9,
+  "scaling_measurements": {
+    "N=0": {
+      "repetitions": 5,
+      "median_ms": 2.497,
+      "all_ms": [
+        2.834,
+        2.973,
+        2.497,
+        2.346,
+        2.436
+      ]
+    },
+    "N=1": {
+      "repetitions": 5,
+      "median_ms": 2.508,
+      "all_ms": [
+        2.365,
+        2.384,
+        2.508,
+        3.141,
+        3.761
+      ]
+    },
+    "N=5": {
+      "repetitions": 5,
+      "median_ms": 2.82,
+      "all_ms": [
+        2.919,
+        2.479,
+        2.433,
+        3.131,
+        2.82
+      ]
+    }
+  },
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
