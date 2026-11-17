@@ -1,0 +1,15 @@
+{
+  "task_id": "R07-T013",
+  "exercise": "exercises/practice/collatz-conjecture",
+  "named_cases": [
+    "zero steps for one",
+    "divide if even",
+    "even and odd steps"
+  ],
+  "executed_tests": 6,
+  "original_passed": true,
+  "mutant_rejected": true,
+  "rejecting_test": "zero steps for one",
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
