@@ -1,3 +1,11 @@
+# Complexity and Invariant Analysis for assert:
+# - Top-level validate_unique runs once: O(N log N) using jq unique.
+# - validate_length is O(1) in jq.
+# - validate_elements runs sort on preorder and inorder at every recursive node invocation.
+#   For a subtree of k elements, sorting takes O(k log k). In a tree of size N, the cumulative
+#   cost of assert across recursive calls is O(N log^2 N) for balanced trees and O(N^2 log N)
+#   in degenerate cases. Process startup and compilation dominate small N, but recursive sorting
+#   governs asymptotic algorithmic scaling.
 def assert(cond; errmsg):
     if cond then . else (errmsg | halt_error) end;
 
