@@ -1,0 +1,14 @@
+{
+  "task_id": "R07-T031",
+  "exercise": "exercises/practice/flatten-array",
+  "included_cases": 11,
+  "excluded_cases": 4,
+  "executed_tests": 11,
+  "target_rationales": {
+    "c6cf26de-8ccd-4410-84bd-b9efd88fd2bc": "Canonical case uses 'list' naming; excluded in favor of array-based reimplementation bc72da10-5f55-4ada-baf3-50e4da02ec8e",
+    "382c5242-587e-4577-b8ce-a5fb51e385a1": "Canonical case uses 'list' naming; excluded in favor of array-based reimplementation 6991836d-0d9b-4703-80a0-3f1f23eb5981",
+    "ef1d4790-1b1e-4939-a179-51ace0829dbd": "Canonical case uses 'list' naming; excluded in favor of array-based reimplementation dc90a09c-5376-449c-a7b3-c2d20d540069"
+  },
+  "learner_stub_unsolved": true,
+  "all_cases_passed": true
+}

@@ -32,6 +32,8 @@ description = "null values are omitted from the final result"
 
 [c6cf26de-8ccd-4410-84bd-b9efd88fd2bc]
 description = "consecutive null values at the front of the list are omitted from the final result"
+# Canonical case uses "list" naming; excluded in favor of array-based reimplementation bc72da10-5f55-4ada-baf3-50e4da02ec8e
+comment = "Canonical case uses 'list' naming; excluded in favor of array-based reimplementation bc72da10-5f55-4ada-baf3-50e4da02ec8e"
 include = false
 
 [bc72da10-5f55-4ada-baf3-50e4da02ec8e]
@@ -40,6 +42,8 @@ reimplements = "c6cf26de-8ccd-4410-84bd-b9efd88fd2bc"
 
 [382c5242-587e-4577-b8ce-a5fb51e385a1]
 description = "consecutive null values in the middle of the list are omitted from the final result"
+# Canonical case uses "list" naming; excluded in favor of array-based reimplementation 6991836d-0d9b-4703-80a0-3f1f23eb5981
+comment = "Canonical case uses 'list' naming; excluded in favor of array-based reimplementation 6991836d-0d9b-4703-80a0-3f1f23eb5981"
 include = false
 
 [6991836d-0d9b-4703-80a0-3f1f23eb5981]
@@ -48,6 +52,8 @@ reimplements = "382c5242-587e-4577-b8ce-a5fb51e385a1"
 
 [ef1d4790-1b1e-4939-a179-51ace0829dbd]
 description = "6 level nest list with null values"
+# Canonical case uses "list" naming; excluded in favor of array-based reimplementation dc90a09c-5376-449c-a7b3-c2d20d540069
+comment = "Canonical case uses 'list' naming; excluded in favor of array-based reimplementation dc90a09c-5376-449c-a7b3-c2d20d540069"
 include = false
 
 [dc90a09c-5376-449c-a7b3-c2d20d540069]
