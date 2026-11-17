@@ -1,0 +1,13 @@
+{
+  "task_id": "R07-T012",
+  "exercise": "exercises/practice/minesweeper",
+  "anchored_cases": [
+    "no rows",
+    "no columns",
+    "no mines"
+  ],
+  "executed_tests": 12,
+  "reproducibility_verified": true,
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}

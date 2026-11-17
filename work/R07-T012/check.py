@@ -1,0 +1,120 @@
+#!/usr/bin/env python3
+"""Automated verification check for R07-T012 (Minesweeper test generation reproducibility)."""
+
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+
+
+def hash_file(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        while chunk := f.read(8192):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def main():
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    exercise_rel = "exercises/practice/minesweeper"
+    exercise_dir = os.path.join(repo_root, exercise_rel)
+
+    config_path = os.path.join(exercise_dir, ".meta/config.json")
+    with open(config_path, "r", encoding="utf-8") as f:
+        cfg = json.load(f)
+
+    stub_path = os.path.join(exercise_dir, cfg["files"]["solution"][0])
+    with open(stub_path, "r", encoding="utf-8") as f:
+        stub_content = f.read()
+
+    # 1. Assert learner stub is still unsolved
+    if "annotate" in stub_content or "minefield" in stub_content:
+        print("ERROR: Working tree learner stub is solved!", file=sys.stderr)
+        sys.exit(1)
+
+    stub_hash_before = hash_file(stub_path)
+
+    # 2. Run regeneration check tool
+    env = os.environ.copy()
+    env["PATH"] = f"/opt/homebrew/bin:{env.get('PATH', '')}"
+
+    regen_res = subprocess.run(
+        [sys.executable, "tools/course_checks/r07-t012.py"],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+        env=env
+    )
+    if regen_res.returncode != 0:
+        print("ERROR: Focused regeneration tool failed:\n" + regen_res.stdout + "\n" + regen_res.stderr, file=sys.stderr)
+        sys.exit(1)
+
+    # 3. Test execution in isolated sandbox
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmp_exercise = os.path.join(tmpdir, exercise_rel)
+        os.makedirs(os.path.dirname(tmp_exercise), exist_ok=True)
+        shutil.copytree(exercise_dir, tmp_exercise)
+        shutil.copytree(os.path.join(repo_root, "bin"), os.path.join(tmpdir, "bin"))
+
+        res = subprocess.run(
+            ["./bin/validate_one_exercise", exercise_rel],
+            cwd=tmpdir,
+            capture_output=True,
+            text=True,
+            env=env
+        )
+
+        if res.returncode != 0:
+            print("ERROR: Test validation failed:\n" + res.stdout + "\n" + res.stderr, file=sys.stderr)
+            sys.exit(1)
+
+        tap_ok = [l for l in res.stdout.splitlines() if l.startswith("ok ")]
+        if len(tap_ok) != 12:
+            print(f"ERROR: Expected 12 executed tests, got {len(tap_ok)}", file=sys.stderr)
+            sys.exit(1)
+
+        anchored_cases = ["no rows", "no columns", "no mines"]
+        for ac in anchored_cases:
+            if not any(ac in l for l in tap_ok):
+                print(f"ERROR: Anchored case '{ac}' missing from executed tests", file=sys.stderr)
+                sys.exit(1)
+
+    # Verify learner stub hash unchanged
+    stub_hash_after = hash_file(stub_path)
+    if stub_hash_before != stub_hash_after:
+        print("ERROR: Learner stub modified during check!", file=sys.stderr)
+        sys.exit(1)
+
+    # 4. Save results and tool versions
+    work_dir = os.path.join(repo_root, "work/R07-T012")
+    os.makedirs(work_dir, exist_ok=True)
+
+    summary = {
+        "task_id": "R07-T012",
+        "exercise": exercise_rel,
+        "anchored_cases": anchored_cases,
+        "executed_tests": len(tap_ok),
+        "reproducibility_verified": True,
+        "learner_stub_unsolved": True,
+        "all_assertions_passed": True
+    }
+    with open(os.path.join(work_dir, "test_results.json"), "w", encoding="utf-8") as f:
+        json.dump(summary, f, indent=2)
+
+    versions = {
+        "python": sys.version.split()[0],
+        "jq": subprocess.run(["jq", "--version"], capture_output=True, text=True).stdout.strip(),
+        "bats": subprocess.run(["bats", "--version"], capture_output=True, text=True, env=env).stdout.strip()
+    }
+    with open(os.path.join(work_dir, "tool_versions.json"), "w", encoding="utf-8") as f:
+        json.dump(versions, f, indent=2)
+
+    print(f"SUCCESS: R07-T012 verified. {len(tap_ok)} tests executed and passed. Test generation is reproducible.")
+
+
+if __name__ == "__main__":
+    main()
