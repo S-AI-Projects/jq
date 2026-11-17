@@ -1,0 +1,15 @@
+{
+  "task_id": "R07-T014",
+  "exercise": "exercises/practice/meetup",
+  "named_cases": [
+    "when teenth Monday is the 13th, the first day of the teenth week",
+    "when teenth Monday is the 19th, the last day of the teenth week",
+    "when teenth Monday is some day in the middle of the teenth week"
+  ],
+  "executed_tests": 95,
+  "refactor_verified": true,
+  "renamed_state": "count -> days_checked",
+  "invariant_documented": true,
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
