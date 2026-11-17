@@ -1,0 +1,13 @@
+{
+  "task_id": "R07-T032",
+  "exercise": "exercises/practice/atbash-cipher",
+  "executed_tests": 14,
+  "anchor_cases_verified": [
+    "encode:encode yes",
+    "encode:encode no",
+    "encode:encode OMG"
+  ],
+  "reproducible_generation": true,
+  "learner_stub_unsolved": true,
+  "all_cases_passed": true
+}
