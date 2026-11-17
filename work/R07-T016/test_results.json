@@ -1,0 +1,17 @@
+{
+  "task_id": "R07-T016",
+  "exercise": "exercises/practice/nth-prime",
+  "named_cases": [
+    "first prime",
+    "second prime",
+    "sixth prime"
+  ],
+  "reference_tests_passed": 5,
+  "alternative_tests_passed": 5,
+  "approaches_compared": [
+    "Dynamic Prime Accumulation (Reference)",
+    "Constant-Space Direct Trial Division (Alternative)"
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
