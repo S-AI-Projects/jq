@@ -1,0 +1,15 @@
+{
+  "task_id": "R07-T019",
+  "exercise": "exercises/practice/acronym",
+  "named_cases": [
+    "lowercase words",
+    "all caps word",
+    "punctuation without whitespace"
+  ],
+  "executed_tests": 9,
+  "hash_invariance_verified": true,
+  "failing_reference_rejected": true,
+  "zero_test_run_rejected": true,
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
