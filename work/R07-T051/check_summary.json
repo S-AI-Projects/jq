@@ -1,0 +1,62 @@
+{
+  "task_id": "R07-T051",
+  "exercise": "prime-factors",
+  "tool_versions": {
+    "python": "3.15.2",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "counts_before": {
+    "included": 12,
+    "excluded": 0
+  },
+  "counts_after": {
+    "included": 12,
+    "excluded": 0
+  },
+  "toml_check": {
+    "total_cases": 12,
+    "included_count": 12,
+    "excluded_count": 0,
+    "rationales": {
+      "924fc966-a8f5-4288-82f2-6b9224819ccd": {
+        "test_name": "no factors",
+        "comment": "Test 'no factors': verifies value 1 returns [] via until condition (.factor * .factor > .number) terminating immediately and empty branch",
+        "included": true
+      },
+      "17e30670-b105-4305-af53-ddde182cb6ad": {
+        "test_name": "prime number",
+        "comment": "Test 'prime number': verifies smallest prime 2 returns [2] via until condition (.factor * .factor > .number) and trailing conditional (.number > 1)",
+        "included": true
+      },
+      "238d57c8-4c12-42ef-af34-ae4929f94789": {
+        "test_name": "another prime number",
+        "comment": "Test 'another prime number': verifies prime 3 returns [3] via until condition (.factor * .factor > .number) and trailing conditional (.number > 1)",
+        "included": true
+      }
+    }
+  },
+  "validation_results": {
+    "returncode": 0,
+    "tests_planned": 12,
+    "tests_passed": 12,
+    "test_names": [
+      "no factors",
+      "prime number",
+      "another prime number",
+      "square of a prime",
+      "product of first prime",
+      "cube of a prime",
+      "product of second prime",
+      "product of third prime",
+      "product of first and second prime",
+      "product of primes and non-primes",
+      "product of primes",
+      "factors include a large prime"
+    ]
+  },
+  "all_cases_passed": true,
+  "learner_stub_unsolved": true
+}

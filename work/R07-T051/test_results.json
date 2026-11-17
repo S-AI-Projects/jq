@@ -1,0 +1,188 @@
+[
+  {
+    "name": "no factors",
+    "input": {
+      "value": 1
+    },
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "name": "prime number",
+    "input": {
+      "value": 2
+    },
+    "expected": [
+      2
+    ],
+    "actual": [
+      2
+    ],
+    "passed": true
+  },
+  {
+    "name": "another prime number",
+    "input": {
+      "value": 3
+    },
+    "expected": [
+      3
+    ],
+    "actual": [
+      3
+    ],
+    "passed": true
+  },
+  {
+    "name": "square of a prime",
+    "input": {
+      "value": 9
+    },
+    "expected": [
+      3,
+      3
+    ],
+    "actual": [
+      3,
+      3
+    ],
+    "passed": true
+  },
+  {
+    "name": "product of first prime",
+    "input": {
+      "value": 4
+    },
+    "expected": [
+      2,
+      2
+    ],
+    "actual": [
+      2,
+      2
+    ],
+    "passed": true
+  },
+  {
+    "name": "cube of a prime",
+    "input": {
+      "value": 8
+    },
+    "expected": [
+      2,
+      2,
+      2
+    ],
+    "actual": [
+      2,
+      2,
+      2
+    ],
+    "passed": true
+  },
+  {
+    "name": "product of second prime",
+    "input": {
+      "value": 27
+    },
+    "expected": [
+      3,
+      3,
+      3
+    ],
+    "actual": [
+      3,
+      3,
+      3
+    ],
+    "passed": true
+  },
+  {
+    "name": "product of third prime",
+    "input": {
+      "value": 625
+    },
+    "expected": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "actual": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "passed": true
+  },
+  {
+    "name": "product of first and second prime",
+    "input": {
+      "value": 6
+    },
+    "expected": [
+      2,
+      3
+    ],
+    "actual": [
+      2,
+      3
+    ],
+    "passed": true
+  },
+  {
+    "name": "product of primes and non-primes",
+    "input": {
+      "value": 12
+    },
+    "expected": [
+      2,
+      2,
+      3
+    ],
+    "actual": [
+      2,
+      2,
+      3
+    ],
+    "passed": true
+  },
+  {
+    "name": "product of primes",
+    "input": {
+      "value": 901255
+    },
+    "expected": [
+      5,
+      17,
+      23,
+      461
+    ],
+    "actual": [
+      5,
+      17,
+      23,
+      461
+    ],
+    "passed": true
+  },
+  {
+    "name": "factors include a large prime",
+    "input": {
+      "value": 93819012551
+    },
+    "expected": [
+      11,
+      9539,
+      894119
+    ],
+    "actual": [
+      11,
+      9539,
+      894119
+    ],
+    "passed": true
+  }
+]

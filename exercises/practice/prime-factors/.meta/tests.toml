@@ -11,12 +11,18 @@
 
 [924fc966-a8f5-4288-82f2-6b9224819ccd]
 description = "no factors"
+# Test 'no factors': verifies value 1 returns [] via until condition (.factor * .factor > .number) terminating immediately and empty branch
+comment = "Test 'no factors': verifies value 1 returns [] via until condition (.factor * .factor > .number) terminating immediately and empty branch"
 
 [17e30670-b105-4305-af53-ddde182cb6ad]
 description = "prime number"
+# Test 'prime number': verifies smallest prime 2 returns [2] via until condition (.factor * .factor > .number) and trailing conditional (.number > 1)
+comment = "Test 'prime number': verifies smallest prime 2 returns [2] via until condition (.factor * .factor > .number) and trailing conditional (.number > 1)"
 
 [238d57c8-4c12-42ef-af34-ae4929f94789]
 description = "another prime number"
+# Test 'another prime number': verifies prime 3 returns [3] via until condition (.factor * .factor > .number) and trailing conditional (.number > 1)
+comment = "Test 'another prime number': verifies prime 3 returns [3] via until condition (.factor * .factor > .number) and trailing conditional (.number > 1)"
 
 [f59b8350-a180-495a-8fb1-1712fbee1158]
 description = "square of a prime"
