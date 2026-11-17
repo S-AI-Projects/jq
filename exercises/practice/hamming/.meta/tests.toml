@@ -27,6 +27,7 @@ description = "long different strands"
 [919f8ef0-b767-4d1b-8516-6379d07fcb28]
 description = "disallow first strand longer"
 include = false
+comment = "Excluded: Superseded by b9228bb1-465f-4141-b40f-1f99812de5a8 in canonical problem-specifications; jq handles length inequality via (.strand1 | length) == (.strand2 | length) with halt_error(1)."
 
 [b9228bb1-465f-4141-b40f-1f99812de5a8]
 description = "disallow first strand longer"
@@ -35,6 +36,7 @@ reimplements = "919f8ef0-b767-4d1b-8516-6379d07fcb28"
 [8a2d4ed0-ead5-4fdd-924d-27c4cf56e60e]
 description = "disallow second strand longer"
 include = false
+comment = "Excluded: Superseded by dab38838-26bb-4fff-acbe-3b0a9bfeba2d in canonical problem-specifications; jq handles length inequality via (.strand1 | length) == (.strand2 | length) with halt_error(1)."
 
 [dab38838-26bb-4fff-acbe-3b0a9bfeba2d]
 description = "disallow second strand longer"
@@ -43,6 +45,7 @@ reimplements = "8a2d4ed0-ead5-4fdd-924d-27c4cf56e60e"
 [5dce058b-28d4-4ca7-aa64-adfe4e17784c]
 description = "disallow left empty strand"
 include = false
+comment = "Excluded: Original case superseded by db92e77e-7c72-499d-8fe6-9354d2bfd504 and subsequently by b764d47c-83ff-4de2-ab10-6cfe4b15c0f3 ('disallow empty first strand') to standardize terminology and error contract."
 
 [db92e77e-7c72-499d-8fe6-9354d2bfd504]
 description = "disallow left empty strand"

@@ -1,0 +1,20 @@
+{
+  "task_id": "R07-T011",
+  "exercise": "exercises/practice/hamming",
+  "total_canonical_cases": 15,
+  "included_cases": 9,
+  "excluded_cases": 6,
+  "target_uuids_verified": [
+    "919f8ef0-b767-4d1b-8516-6379d07fcb28",
+    "8a2d4ed0-ead5-4fdd-924d-27c4cf56e60e",
+    "5dce058b-28d4-4ca7-aa64-adfe4e17784c"
+  ],
+  "executed_tests": 9,
+  "named_cases_passed": [
+    "empty strands",
+    "single letter identical strands",
+    "single letter different strands"
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
