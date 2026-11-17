@@ -1,0 +1,9 @@
+{
+  "task_id": "R07-T039",
+  "exercise": "exercises/practice/binary-search",
+  "executed_tests": 10,
+  "hash_invariance_verified": true,
+  "failing_reference_rejected": true,
+  "learner_stub_unsolved": true,
+  "all_cases_passed": true
+}
