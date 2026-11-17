@@ -1,0 +1,8 @@
+{
+  "task_id": "R07-T040",
+  "exercise": "exercises/practice/hello-world",
+  "executed_tests": 1,
+  "decision_table_verified": true,
+  "learner_stub_unsolved": true,
+  "all_cases_passed": true
+}
