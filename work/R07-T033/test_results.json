@@ -1,0 +1,9 @@
+{
+  "task_id": "R07-T033",
+  "exercise": "exercises/practice/reverse-string",
+  "reference_tests_passed": 7,
+  "mutant_rejected": true,
+  "rejecting_test_id": "01ebf55b-bebb-414e-9dec-06f7bb0bee3c",
+  "rejecting_test_name": "a word",
+  "learner_stub_unsolved": true
+}
