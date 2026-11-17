@@ -1,0 +1,8 @@
+{
+  "task_id": "R07-T034",
+  "exercise": "exercises/practice/two-bucket",
+  "executed_tests": 11,
+  "refactoring_verified": true,
+  "learner_stub_unsolved": true,
+  "all_cases_passed": true
+}
