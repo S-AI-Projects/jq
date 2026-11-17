@@ -1,0 +1,29 @@
+{
+  "task_id": "R07-T018",
+  "exercise": "exercises/practice/sieve",
+  "named_cases": [
+    "no primes under two",
+    "find first prime"
+  ],
+  "executed_tests": 5,
+  "real_config_passed": true,
+  "invalid_fixtures_tested": [
+    {
+      "fixture": "missing_reference",
+      "correctly_rejected": true,
+      "error": "Declared example file does not exist: '.meta/nonexistent.jq' (resolved: /Users/aryan/Documents/jq/exercises/practice/sieve/.meta/nonexistent.jq)"
+    },
+    {
+      "fixture": "missing_test",
+      "correctly_rejected": true,
+      "error": "Declared test file does not exist: 'nonexistent-test.bats' (resolved: /Users/aryan/Documents/jq/exercises/practice/sieve/nonexistent-test.bats)"
+    },
+    {
+      "fixture": "outside_exercise_traversal",
+      "correctly_rejected": true,
+      "error": "Parent traversal forbidden for solution: '../../outside.jq' resolves outside exercise directory"
+    }
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
