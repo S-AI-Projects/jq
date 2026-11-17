@@ -1,0 +1,8 @@
+{
+  "task_id": "R07-T037",
+  "exercise": "exercises/practice/zebra-puzzle",
+  "executed_tests": 2,
+  "micro_examples_verified": true,
+  "learner_stub_unsolved": true,
+  "all_cases_passed": true
+}
