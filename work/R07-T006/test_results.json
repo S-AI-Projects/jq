@@ -1,0 +1,15 @@
+{
+  "task_id": "R07-T006",
+  "exercise": "exercises/practice/nucleotide-count",
+  "approach_1": "Single-pass streaming reduce over exploded characters",
+  "approach_2": "Upfront regex validation followed by multi-pass character filtering",
+  "reference_tests_passed": 5,
+  "alternative_tests_passed": 5,
+  "named_cases_passed": [
+    "empty strand",
+    "can count one nucleotide in single-character input",
+    "strand with repeated nucleotide"
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
