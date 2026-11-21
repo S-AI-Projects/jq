@@ -11,12 +11,15 @@
 
 [5ce422f9-7a4b-4f44-ad29-49c67cb32d2c]
 description = "single bit one to decimal"
+comment = "Covered: single unit bit conversion identity where reduce in to_decimal accumulates base*acc + digit (2*0 + 1 = 1) and to_base emits [1]."
 
 [0cc3fea8-bb79-46ac-a2ab-5a2c93051033]
 description = "binary to single decimal"
+comment = "Covered: multi-digit positional evaluation where reduce in to_decimal produces 5 and to_base formats into single-digit [5]."
 
 [f12db0f9-0d3d-42c2-b3ba-e38cb375a2b8]
 description = "single decimal to binary"
+comment = "Covered: single-digit decimal input to multi-digit binary radix expansion using recursive modulo/division (.n % base and (.n - $digit)/base) assembling [1, 0, 1]."
 
 [2c45cf54-6da3-4748-9733-5a3c765d925b]
 description = "binary to multiple decimal"
