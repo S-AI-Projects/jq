@@ -1,0 +1,14 @@
+{
+  "task_id": "R07-T004",
+  "exercise": "exercises/practice/armstrong-numbers",
+  "refactored_function": "ipow",
+  "refactoring_type": "iterative reduce range replacing recursion and array allocation",
+  "executed_tests": 9,
+  "named_cases_passed": [
+    "Zero is an Armstrong number",
+    "Single-digit numbers are Armstrong numbers",
+    "There are no two-digit Armstrong numbers"
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
