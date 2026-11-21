@@ -1,0 +1,42 @@
+{
+  "task_id": "R07-T010",
+  "exercise": "exercises/practice/resistor-color-trio",
+  "decision_table_verified": true,
+  "decision_table_entries": [
+    {
+      "name": "Orange and orange and black",
+      "input": {
+        "colors": [
+          "orange",
+          "orange",
+          "black"
+        ]
+      },
+      "expected": {
+        "value": 33,
+        "unit": "ohms"
+      }
+    },
+    {
+      "name": "Blue and grey and brown",
+      "input": {
+        "colors": [
+          "blue",
+          "grey",
+          "brown"
+        ]
+      },
+      "expected": {
+        "value": 680,
+        "unit": "ohms"
+      }
+    }
+  ],
+  "executed_tests": 10,
+  "named_cases_passed": [
+    "Orange and orange and black",
+    "Blue and grey and brown"
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
