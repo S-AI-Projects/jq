@@ -1,12 +1,7 @@
+# Integer exponentiation (num^power) via iterative multiplication.
+# Invariant: num^0 == 1 for all base digits; iterative reduction preserves exact integer values without float inaccuracies.
 def ipow(num; power):
-  # could be implemented with a reduce, or even `pow|floor`
-  def _ipow:
-    if first == 0
-      then last
-      else [first - 1, last * num] | _ipow
-    end
-  ;
-  [power, 1] | _ipow
+  reduce range(power) as $_ (1; . * num)
 ;
 
 def armstrong_sum:
