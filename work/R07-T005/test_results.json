@@ -1,0 +1,44 @@
+{
+  "task_id": "R07-T005",
+  "exercise": "exercises/practice/largest-series-product",
+  "measured_scaling": [
+    {
+      "case": "finds the largest product if span equals length",
+      "input_length_N": 2,
+      "span_k": 2,
+      "assertions_count": 3,
+      "sliding_windows": 1,
+      "multiplications": 2,
+      "median_runtime_ms": 2.34,
+      "verified_correct": true
+    },
+    {
+      "case": "can find the largest product of 2",
+      "input_length_N": 9,
+      "span_k": 2,
+      "assertions_count": 3,
+      "sliding_windows": 8,
+      "multiplications": 16,
+      "median_runtime_ms": 2.36,
+      "verified_correct": true
+    },
+    {
+      "case": "can find the largest product of 2 with numbers in order",
+      "input_length_N": 10,
+      "span_k": 2,
+      "assertions_count": 3,
+      "sliding_windows": 9,
+      "multiplications": 18,
+      "median_runtime_ms": 2.36,
+      "verified_correct": true
+    }
+  ],
+  "executed_tests": 15,
+  "named_cases_passed": [
+    "finds the largest product if span equals length",
+    "can find the largest product of 2",
+    "can find the largest product of 2 with numbers in order"
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
