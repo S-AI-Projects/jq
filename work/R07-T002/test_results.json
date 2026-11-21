@@ -1,0 +1,13 @@
+{
+  "task_id": "R07-T002",
+  "exercise": "exercises/practice/pangram",
+  "reproducible_generation_verified": true,
+  "anchor_cases_verified": [
+    "empty sentence",
+    "perfect lower case",
+    "only lower case"
+  ],
+  "executed_tests": 10,
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
