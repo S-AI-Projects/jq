@@ -1,0 +1,18 @@
+{
+  "task_id": "R07-T008",
+  "exercise": "exercises/practice/pascals-triangle",
+  "real_config_verified": true,
+  "negative_fixtures_verified": [
+    "missing-reference",
+    "missing-test",
+    "outside-exercise"
+  ],
+  "executed_tests": 8,
+  "named_cases_passed": [
+    "zero rows",
+    "single row",
+    "two rows"
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
