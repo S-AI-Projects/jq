@@ -1,0 +1,22 @@
+{
+  "task_id": "R07-T001",
+  "exercise": "exercises/practice/all-your-base",
+  "total_canonical_cases": 21,
+  "included_cases_before": 21,
+  "included_cases_after": 21,
+  "excluded_cases_before": 0,
+  "excluded_cases_after": 0,
+  "target_uuids_verified": [
+    "5ce422f9-7a4b-4f44-ad29-49c67cb32d2c",
+    "0cc3fea8-bb79-46ac-a2ab-5a2c93051033",
+    "f12db0f9-0d3d-42c2-b3ba-e38cb375a2b8"
+  ],
+  "executed_tests": 21,
+  "named_cases_passed": [
+    "single bit one to decimal",
+    "binary to single decimal",
+    "single decimal to binary"
+  ],
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
