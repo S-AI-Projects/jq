@@ -1,0 +1,17 @@
+{
+  "task_id": "R07-T009",
+  "exercise": "exercises/practice/pig-latin",
+  "hash_invariance_verified": true,
+  "sha256_stub_before": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+  "sha256_stub_after": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+  "real_reference_passed_tests": 23,
+  "named_cases_passed": [
+    "ay is added to words that start with vowels:word beginning with a",
+    "ay is added to words that start with vowels:word beginning with e",
+    "ay is added to words that start with vowels:word beginning with i"
+  ],
+  "failing_mutant_rejected": true,
+  "zero_test_detected": true,
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
