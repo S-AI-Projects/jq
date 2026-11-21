@@ -1,0 +1,15 @@
+{
+  "task_id": "R07-T003",
+  "exercise": "exercises/practice/kindergarten-garden",
+  "original_tests_passed": 17,
+  "named_cases_passed": [
+    "partial garden:garden with single student",
+    "partial garden:different garden with single student",
+    "partial garden:garden with two students"
+  ],
+  "mutant_rejected": true,
+  "rejecting_test": "partial garden:garden with two students",
+  "rejecting_uuid": "c376fcc8-349c-446c-94b0-903947315757",
+  "learner_stub_unsolved": true,
+  "all_assertions_passed": true
+}
