@@ -1,0 +1,626 @@
+{
+  "exercise": "exercises/practice/anagram",
+  "tool_versions": {
+    "python": "3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  },
+  "inputs": {
+    "cases": [
+      {
+        "name": "no matches",
+        "input": {
+          "subject": "diaper",
+          "candidates": [
+            "hello",
+            "world",
+            "zombies",
+            "pants"
+          ]
+        },
+        "expected": "[]",
+        "skip_directive_active": false
+      },
+      {
+        "name": "detects two anagrams",
+        "input": {
+          "subject": "solemn",
+          "candidates": [
+            "lemons",
+            "cherry",
+            "melons"
+          ]
+        },
+        "expected": "[\"lemons\",\"melons\"]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "does not detect anagram subsets",
+        "input": {
+          "subject": "good",
+          "candidates": [
+            "dog",
+            "goody"
+          ]
+        },
+        "expected": "[]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "detects anagram",
+        "input": {
+          "subject": "listen",
+          "candidates": [
+            "enlists",
+            "google",
+            "inlets",
+            "banana"
+          ]
+        },
+        "expected": "[\"inlets\"]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "detects three anagrams",
+        "input": {
+          "subject": "allergy",
+          "candidates": [
+            "gallery",
+            "ballerina",
+            "regally",
+            "clergy",
+            "largely",
+            "leading"
+          ]
+        },
+        "expected": "[\"gallery\",\"regally\",\"largely\"]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "detects multiple anagrams with different case",
+        "input": {
+          "subject": "nose",
+          "candidates": [
+            "Eons",
+            "ONES"
+          ]
+        },
+        "expected": "[\"Eons\",\"ONES\"]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "does not detect non-anagrams with identical checksum",
+        "input": {
+          "subject": "mass",
+          "candidates": [
+            "last"
+          ]
+        },
+        "expected": "[]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "detects anagrams case-insensitively",
+        "input": {
+          "subject": "Orchestra",
+          "candidates": [
+            "cashregister",
+            "Carthorse",
+            "radishes"
+          ]
+        },
+        "expected": "[\"Carthorse\"]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "detects anagrams using case-insensitive subject",
+        "input": {
+          "subject": "Orchestra",
+          "candidates": [
+            "cashregister",
+            "carthorse",
+            "radishes"
+          ]
+        },
+        "expected": "[\"carthorse\"]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "detects anagrams using case-insensitive possible matches",
+        "input": {
+          "subject": "orchestra",
+          "candidates": [
+            "cashregister",
+            "Carthorse",
+            "radishes"
+          ]
+        },
+        "expected": "[\"Carthorse\"]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "does not detect an anagram if the original word is repeated",
+        "input": {
+          "subject": "go",
+          "candidates": [
+            "goGoGO"
+          ]
+        },
+        "expected": "[]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "anagrams must use all letters exactly once",
+        "input": {
+          "subject": "tapper",
+          "candidates": [
+            "patter"
+          ]
+        },
+        "expected": "[]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "words are not anagrams of themselves",
+        "input": {
+          "subject": "BANANA",
+          "candidates": [
+            "BANANA"
+          ]
+        },
+        "expected": "[]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "words are not anagrams of themselves even if letter case is partially different",
+        "input": {
+          "subject": "BANANA",
+          "candidates": [
+            "Banana"
+          ]
+        },
+        "expected": "[]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "words are not anagrams of themselves even if letter case is completely different",
+        "input": {
+          "subject": "BANANA",
+          "candidates": [
+            "banana"
+          ]
+        },
+        "expected": "[]",
+        "skip_directive_active": true
+      },
+      {
+        "name": "words other than themselves can be anagrams",
+        "input": {
+          "subject": "LISTEN",
+          "candidates": [
+            "LISTEN",
+            "Silent"
+          ]
+        },
+        "expected": "[\"Silent\"]",
+        "skip_directive_active": true
+      }
+    ],
+    "solution_path": "exercises/practice/anagram/anagram.jq",
+    "test_path": "exercises/practice/anagram/test-anagram.bats",
+    "example_path": "exercises/practice/anagram/.meta/example.jq",
+    "mutation": {
+      "description": "remove only the case-insensitive self-match exclusion",
+      "original": "(ascii_upcase != $subj) and (encode == $code)",
+      "replacement": "(encode == $code)"
+    }
+  },
+  "case_comparisons": [
+    {
+      "name": "no matches",
+      "input": {
+        "subject": "diaper",
+        "candidates": [
+          "hello",
+          "world",
+          "zombies",
+          "pants"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "detects two anagrams",
+      "input": {
+        "subject": "solemn",
+        "candidates": [
+          "lemons",
+          "cherry",
+          "melons"
+        ]
+      },
+      "expected": "[\"lemons\",\"melons\"]",
+      "original": "[\"lemons\",\"melons\"]",
+      "mutated": "[\"lemons\",\"melons\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "does not detect anagram subsets",
+      "input": {
+        "subject": "good",
+        "candidates": [
+          "dog",
+          "goody"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "detects anagram",
+      "input": {
+        "subject": "listen",
+        "candidates": [
+          "enlists",
+          "google",
+          "inlets",
+          "banana"
+        ]
+      },
+      "expected": "[\"inlets\"]",
+      "original": "[\"inlets\"]",
+      "mutated": "[\"inlets\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "detects three anagrams",
+      "input": {
+        "subject": "allergy",
+        "candidates": [
+          "gallery",
+          "ballerina",
+          "regally",
+          "clergy",
+          "largely",
+          "leading"
+        ]
+      },
+      "expected": "[\"gallery\",\"regally\",\"largely\"]",
+      "original": "[\"gallery\",\"regally\",\"largely\"]",
+      "mutated": "[\"gallery\",\"regally\",\"largely\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "detects multiple anagrams with different case",
+      "input": {
+        "subject": "nose",
+        "candidates": [
+          "Eons",
+          "ONES"
+        ]
+      },
+      "expected": "[\"Eons\",\"ONES\"]",
+      "original": "[\"Eons\",\"ONES\"]",
+      "mutated": "[\"Eons\",\"ONES\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "does not detect non-anagrams with identical checksum",
+      "input": {
+        "subject": "mass",
+        "candidates": [
+          "last"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "detects anagrams case-insensitively",
+      "input": {
+        "subject": "Orchestra",
+        "candidates": [
+          "cashregister",
+          "Carthorse",
+          "radishes"
+        ]
+      },
+      "expected": "[\"Carthorse\"]",
+      "original": "[\"Carthorse\"]",
+      "mutated": "[\"Carthorse\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "detects anagrams using case-insensitive subject",
+      "input": {
+        "subject": "Orchestra",
+        "candidates": [
+          "cashregister",
+          "carthorse",
+          "radishes"
+        ]
+      },
+      "expected": "[\"carthorse\"]",
+      "original": "[\"carthorse\"]",
+      "mutated": "[\"carthorse\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "detects anagrams using case-insensitive possible matches",
+      "input": {
+        "subject": "orchestra",
+        "candidates": [
+          "cashregister",
+          "Carthorse",
+          "radishes"
+        ]
+      },
+      "expected": "[\"Carthorse\"]",
+      "original": "[\"Carthorse\"]",
+      "mutated": "[\"Carthorse\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "does not detect an anagram if the original word is repeated",
+      "input": {
+        "subject": "go",
+        "candidates": [
+          "goGoGO"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "anagrams must use all letters exactly once",
+      "input": {
+        "subject": "tapper",
+        "candidates": [
+          "patter"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": false
+    },
+    {
+      "name": "words are not anagrams of themselves",
+      "input": {
+        "subject": "BANANA",
+        "candidates": [
+          "BANANA"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[\"BANANA\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": true
+    },
+    {
+      "name": "words are not anagrams of themselves even if letter case is partially different",
+      "input": {
+        "subject": "BANANA",
+        "candidates": [
+          "Banana"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[\"Banana\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": true
+    },
+    {
+      "name": "words are not anagrams of themselves even if letter case is completely different",
+      "input": {
+        "subject": "BANANA",
+        "candidates": [
+          "banana"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[\"banana\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": true
+    },
+    {
+      "name": "words other than themselves can be anagrams",
+      "input": {
+        "subject": "LISTEN",
+        "candidates": [
+          "LISTEN",
+          "Silent"
+        ]
+      },
+      "expected": "[\"Silent\"]",
+      "original": "[\"Silent\"]",
+      "mutated": "[\"LISTEN\",\"Silent\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "original_passed": true,
+      "mutant_rejected": true
+    }
+  ],
+  "mutant": {
+    "description": "remove only the case-insensitive self-match exclusion",
+    "changed_expression": {
+      "before": "(ascii_upcase != $subj) and (encode == $code)",
+      "after": "(encode == $code)"
+    },
+    "existing_rejecting_test": {
+      "name": "words are not anagrams of themselves",
+      "input": {
+        "subject": "BANANA",
+        "candidates": [
+          "BANANA"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutated": "[\"BANANA\"]",
+      "rejected": true
+    },
+    "smallest_diagnostic": {
+      "input": {
+        "subject": "a",
+        "candidates": [
+          "a"
+        ]
+      },
+      "expected": "[]",
+      "original": "[]",
+      "mutant_expected_to_fail_as": "[\"a\"]",
+      "mutated": "[\"a\"]",
+      "original_return_code": 0,
+      "mutated_return_code": 0,
+      "passed": true
+    }
+  },
+  "validator_runs": {
+    "original": {
+      "plan_count": 16,
+      "plan_entries": 1,
+      "reported_count": 16,
+      "executed_count": 16,
+      "skipped_count": 0,
+      "failed_count": 0,
+      "failed_test_names": [],
+      "test_names": [
+        "no matches",
+        "detects two anagrams",
+        "does not detect anagram subsets",
+        "detects anagram",
+        "detects three anagrams",
+        "detects multiple anagrams with different case",
+        "does not detect non-anagrams with identical checksum",
+        "detects anagrams case-insensitively",
+        "detects anagrams using case-insensitive subject",
+        "detects anagrams using case-insensitive possible matches",
+        "does not detect an anagram if the original word is repeated",
+        "anagrams must use all letters exactly once",
+        "words are not anagrams of themselves",
+        "words are not anagrams of themselves even if letter case is partially different",
+        "words are not anagrams of themselves even if letter case is completely different",
+        "words other than themselves can be anagrams"
+      ],
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/anagram"
+      ],
+      "return_code": 0,
+      "expected_test_count": 16,
+      "stdout": "Processing anagram\n1..16\nok 1 no matches\nok 2 detects two anagrams\nok 3 does not detect anagram subsets\nok 4 detects anagram\nok 5 detects three anagrams\nok 6 detects multiple anagrams with different case\nok 7 does not detect non-anagrams with identical checksum\nok 8 detects anagrams case-insensitively\nok 9 detects anagrams using case-insensitive subject\nok 10 detects anagrams using case-insensitive possible matches\nok 11 does not detect an anagram if the original word is repeated\nok 12 anagrams must use all letters exactly once\nok 13 words are not anagrams of themselves\nok 14 words are not anagrams of themselves even if letter case is partially different\nok 15 words are not anagrams of themselves even if letter case is completely different\nok 16 words other than themselves can be anagrams\n",
+      "stderr": "",
+      "temporary_copy_cleaned": true,
+      "passed": true
+    },
+    "mutated": {
+      "plan_count": 16,
+      "plan_entries": 1,
+      "reported_count": 16,
+      "executed_count": 16,
+      "skipped_count": 0,
+      "failed_count": 4,
+      "failed_test_names": [
+        "words are not anagrams of themselves",
+        "words are not anagrams of themselves even if letter case is partially different",
+        "words are not anagrams of themselves even if letter case is completely different",
+        "words other than themselves can be anagrams"
+      ],
+      "test_names": [
+        "no matches",
+        "detects two anagrams",
+        "does not detect anagram subsets",
+        "detects anagram",
+        "detects three anagrams",
+        "detects multiple anagrams with different case",
+        "does not detect non-anagrams with identical checksum",
+        "detects anagrams case-insensitively",
+        "detects anagrams using case-insensitive subject",
+        "detects anagrams using case-insensitive possible matches",
+        "does not detect an anagram if the original word is repeated",
+        "anagrams must use all letters exactly once",
+        "words are not anagrams of themselves",
+        "words are not anagrams of themselves even if letter case is partially different",
+        "words are not anagrams of themselves even if letter case is completely different",
+        "words other than themselves can be anagrams"
+      ],
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/anagram"
+      ],
+      "return_code": 1,
+      "expected_test_count": 16,
+      "stdout": "Processing anagram\n1..16\nok 1 no matches\nok 2 detects two anagrams\nok 3 does not detect anagram subsets\nok 4 detects anagram\nok 5 detects three anagrams\nok 6 detects multiple anagrams with different case\nok 7 does not detect non-anagrams with identical checksum\nok 8 detects anagrams case-insensitively\nok 9 detects anagrams using case-insensitive subject\nok 10 detects anagrams using case-insensitive possible matches\nok 11 does not detect an anagram if the original word is repeated\nok 12 anagrams must use all letters exactly once\nnot ok 13 words are not anagrams of themselves\n# (from function `assert_equal' in file bats-extra.bash, line 178,\n#  in test file test-anagram.bats, line 245)\n#   `assert_equal \"$output\" \"$expected\"' failed\n#\n# -- values do not equal --\n# expected : []\n# actual   : [\"BANANA\"]\n# --\n#\nnot ok 14 words are not anagrams of themselves even if letter case is partially different\n# (from function `assert_equal' in file bats-extra.bash, line 178,\n#  in test file test-anagram.bats, line 262)\n#   `assert_equal \"$output\" \"$expected\"' failed\n#\n# -- values do not equal --\n# expected : []\n# actual   : [\"Banana\"]\n# --\n#\nnot ok 15 words are not anagrams of themselves even if letter case is completely different\n# (from function `assert_equal' in file bats-extra.bash, line 178,\n#  in test file test-anagram.bats, line 279)\n#   `assert_equal \"$output\" \"$expected\"' failed\n#\n# -- values do not equal --\n# expected : []\n# actual   : [\"banana\"]\n# --\n#\nnot ok 16 words other than themselves can be anagrams\n# (from function `assert_equal' in file bats-extra.bash, line 178,\n#  in test file test-anagram.bats, line 297)\n#   `assert_equal \"$output\" \"$expected\"' failed\n#\n# -- values do not equal --\n# expected : [\"Silent\"]\n# actual   : [\"LISTEN\",\"Silent\"]\n# --\n#\n",
+      "stderr": "",
+      "temporary_copy_cleaned": true,
+      "passed": false
+    }
+  },
+  "learner_solution_hashes": {
+    "before": {
+      "exercises/practice/anagram/anagram.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+    },
+    "after": {
+      "exercises/practice/anagram/anagram.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+    },
+    "unchanged": true
+  },
+  "failures": [],
+  "passed": true
+}
