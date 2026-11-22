@@ -1,0 +1,74 @@
+{
+  "checked_at_utc": "2026-11-22T17:27:55.155797+00:00",
+  "platform": "macOS-27.2.1-arm64-arm-64bit",
+  "python": "3.9.6",
+  "exercise_validation": {
+    "expected_count": 9,
+    "expected_case_names": [
+      "year not divisible by 4 in common year",
+      "year divisible by 2, not divisible by 4 in common year",
+      "year divisible by 4, not divisible by 100 in leap year",
+      "year divisible by 4 and 5 is still a leap year",
+      "year divisible by 100, not divisible by 400 in common year",
+      "year divisible by 100 but not by 3 is still not a leap year",
+      "year divisible by 400 is leap year",
+      "year divisible by 400 but not by 125 is still a leap year",
+      "year divisible by 200, not divisible by 400 in common year"
+    ],
+    "command": [
+      "bin/validate_one_exercise",
+      "exercises/practice/leap"
+    ],
+    "returncode": 0,
+    "tap_plans": [
+      9
+    ],
+    "executed_count": 9,
+    "passed_case_names": [
+      "year not divisible by 4 in common year",
+      "year divisible by 2, not divisible by 4 in common year",
+      "year divisible by 4, not divisible by 100 in leap year",
+      "year divisible by 4 and 5 is still a leap year",
+      "year divisible by 100, not divisible by 400 in common year",
+      "year divisible by 100 but not by 3 is still not a leap year",
+      "year divisible by 400 is leap year",
+      "year divisible by 400 but not by 125 is still a leap year",
+      "year divisible by 200, not divisible by 400 in common year"
+    ],
+    "failed_lines": [],
+    "stdout": "Processing leap\n1..9\nok 1 year not divisible by 4 in common year\nok 2 year divisible by 2, not divisible by 4 in common year\nok 3 year divisible by 4, not divisible by 100 in leap year\nok 4 year divisible by 4 and 5 is still a leap year\nok 5 year divisible by 100, not divisible by 400 in common year\nok 6 year divisible by 100 but not by 3 is still not a leap year\nok 7 year divisible by 400 is leap year\nok 8 year divisible by 400 but not by 125 is still a leap year\nok 9 year divisible by 200, not divisible by 400 in common year\n",
+    "stderr": ""
+  },
+  "micro_examples": [
+    {
+      "name": "null and false both select the alternative",
+      "program": "[({year: null} | (.year // 2024)), ({year: false} | (.year // 2024))]",
+      "expected": "[2024,2024]",
+      "actual": "[2024,2024]",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "false differs from null but still selects the alternative",
+      "program": "[({year: false} | (.year == null)), ({year: false} | (.year // 0))]",
+      "expected": "[false,0]",
+      "actual": "[false,0]",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "tool_versions": {
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  },
+  "learner_solution": {
+    "path": "exercises/practice/leap/leap.jq",
+    "sha256_before": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+    "sha256_after": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+    "unchanged": true
+  }
+}
