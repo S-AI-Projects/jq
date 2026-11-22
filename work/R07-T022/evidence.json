@@ -1,0 +1,534 @@
+{
+  "checked_at_utc": "2026-11-22T16:17:31.290060+00:00",
+  "canonical_source": {
+    "url": "https://raw.githubusercontent.com/exercism/problem-specifications/4812c213a2647e2034ad5ac78155ce9265cdd171/exercises/bob/canonical-data.json",
+    "revision": "4812c213a2647e2034ad5ac78155ce9265cdd171"
+  },
+  "commands": [
+    {
+      "purpose": "generation 1",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "bin/test-generator",
+        "--no-pull",
+        "bob"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "purpose": "generation 2",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "bin/test-generator",
+        "--no-pull",
+        "bob"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "purpose": "reference validation",
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/bob"
+      ],
+      "returncode": 0,
+      "stdout": "Processing bob\n1..26\nok 1 asking a question\nok 2 shouting\nok 3 forceful question\nok 4 silence\nok 5 stating something\nok 6 asking a numeric question\nok 7 asking gibberish\nok 8 question with no letters\nok 9 non-letters with question\nok 10 prattling on\nok 11 ending with whitespace\nok 12 multiple line question\nok 13 shouting gibberish\nok 14 shouting a statement containing a question mark\nok 15 shouting numbers\nok 16 shouting with special characters\nok 17 shouting with no exclamation mark\nok 18 prolonged silence\nok 19 alternate silence\nok 20 other whitespace\nok 21 talking forcefully\nok 22 using acronyms in regular speech\nok 23 no letters\nok 24 statement containing question mark\nok 25 starting with whitespace\nok 26 non-question ending with whitespace\n",
+      "stderr": ""
+    }
+  ],
+  "case_results": [
+    {
+      "name": "asking a question",
+      "uuid": "8a2e771d-d6f1-4e3f-b6c6-b41495556e37",
+      "input": {
+        "heyBob": "Does this cryogenic chamber make me look fat?"
+      },
+      "expected": "Sure.",
+      "actual": "Sure.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "shouting",
+      "uuid": "73a966dc-8017-47d6-bb32-cf07d1a5fcd9",
+      "input": {
+        "heyBob": "WATCH OUT!"
+      },
+      "expected": "Whoa, chill out!",
+      "actual": "Whoa, chill out!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "forceful question",
+      "uuid": "a5193c61-4a92-4f68-93e2-f554eb385ec6",
+      "input": {
+        "heyBob": "WHAT'S GOING ON?"
+      },
+      "expected": "Calm down, I know what I'm doing!",
+      "actual": "Calm down, I know what I'm doing!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "silence",
+      "uuid": "bc39f7c6-f543-41be-9a43-fd1c2f753fc0",
+      "input": {
+        "heyBob": ""
+      },
+      "expected": "Fine. Be that way!",
+      "actual": "Fine. Be that way!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "stating something",
+      "uuid": "e162fead-606f-437a-a166-d051915cea8e",
+      "input": {
+        "heyBob": "Tom-ay-to, tom-aaaah-to."
+      },
+      "expected": "Whatever.",
+      "actual": "Whatever.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "asking a numeric question",
+      "uuid": "81080c62-4e4d-4066-b30a-48d8d76920d9",
+      "input": {
+        "heyBob": "You are, what, like 15?"
+      },
+      "expected": "Sure.",
+      "actual": "Sure.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "asking gibberish",
+      "uuid": "2a02716d-685b-4e2e-a804-2adaf281c01e",
+      "input": {
+        "heyBob": "fffbbcbeab?"
+      },
+      "expected": "Sure.",
+      "actual": "Sure.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "question with no letters",
+      "uuid": "bb0011c5-cd52-4a5b-8bfb-a87b6283b0e2",
+      "input": {
+        "heyBob": "4?"
+      },
+      "expected": "Sure.",
+      "actual": "Sure.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "non-letters with question",
+      "uuid": "9bfc677d-ea3a-45f2-be44-35bc8fa3753e",
+      "input": {
+        "heyBob": ":) ?"
+      },
+      "expected": "Sure.",
+      "actual": "Sure.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "prattling on",
+      "uuid": "8608c508-f7de-4b17-985b-811878b3cf45",
+      "input": {
+        "heyBob": "Wait! Hang on. Are you going to be OK?"
+      },
+      "expected": "Sure.",
+      "actual": "Sure.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "ending with whitespace",
+      "uuid": "05b304d6-f83b-46e7-81e0-4cd3ca647900",
+      "input": {
+        "heyBob": "Okay if like my  spacebar  quite a bit?   "
+      },
+      "expected": "Sure.",
+      "actual": "Sure.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "multiple line question",
+      "uuid": "2c7278ac-f955-4eb4-bf8f-e33eb4116a15",
+      "input": {
+        "heyBob": "\nDoes this cryogenic chamber make\n me look fat?"
+      },
+      "expected": "Sure.",
+      "actual": "Sure.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "shouting gibberish",
+      "uuid": "d6c98afd-df35-4806-b55e-2c457c3ab748",
+      "input": {
+        "heyBob": "FCECDFCAAB"
+      },
+      "expected": "Whoa, chill out!",
+      "actual": "Whoa, chill out!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "shouting a statement containing a question mark",
+      "uuid": "3c954328-86fb-4c71-8961-e18d6a5e2517",
+      "input": {
+        "heyBob": "DO LIONS EAT PEOPLE? AHHHHH."
+      },
+      "expected": "Whoa, chill out!",
+      "actual": "Whoa, chill out!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "shouting numbers",
+      "uuid": "a20e0c54-2224-4dde-8b10-bd2cdd4f61bc",
+      "input": {
+        "heyBob": "1, 2, 3 GO!"
+      },
+      "expected": "Whoa, chill out!",
+      "actual": "Whoa, chill out!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "shouting with special characters",
+      "uuid": "496143c8-1c31-4c01-8a08-88427af85c66",
+      "input": {
+        "heyBob": "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"
+      },
+      "expected": "Whoa, chill out!",
+      "actual": "Whoa, chill out!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "shouting with no exclamation mark",
+      "uuid": "e6793c1c-43bd-4b8d-bc11-499aea73925f",
+      "input": {
+        "heyBob": "I HATE THE DENTIST"
+      },
+      "expected": "Whoa, chill out!",
+      "actual": "Whoa, chill out!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "prolonged silence",
+      "uuid": "d6c47565-372b-4b09-b1dd-c40552b8378b",
+      "input": {
+        "heyBob": "          "
+      },
+      "expected": "Fine. Be that way!",
+      "actual": "Fine. Be that way!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "alternate silence",
+      "uuid": "4428f28d-4100-4d85-a902-e5a78cb0ecd3",
+      "input": {
+        "heyBob": "\t\t\t\t\t\t\t\t\t\t"
+      },
+      "expected": "Fine. Be that way!",
+      "actual": "Fine. Be that way!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "other whitespace",
+      "uuid": "72bd5ad3-9b2f-4931-a988-dce1f5771de2",
+      "input": {
+        "heyBob": "\n\r \t"
+      },
+      "expected": "Fine. Be that way!",
+      "actual": "Fine. Be that way!",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "talking forcefully",
+      "uuid": "c02f9179-ab16-4aa7-a8dc-940145c385f7",
+      "input": {
+        "heyBob": "Hi there!"
+      },
+      "expected": "Whatever.",
+      "actual": "Whatever.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "using acronyms in regular speech",
+      "uuid": "153c0e25-9bb5-4ec5-966e-598463658bcd",
+      "input": {
+        "heyBob": "It's OK if you don't want to go work for NASA."
+      },
+      "expected": "Whatever.",
+      "actual": "Whatever.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "no letters",
+      "uuid": "f7bc4b92-bdff-421e-a238-ae97f230ccac",
+      "input": {
+        "heyBob": "1, 2, 3"
+      },
+      "expected": "Whatever.",
+      "actual": "Whatever.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "statement containing question mark",
+      "uuid": "aa8097cc-c548-4951-8856-14a404dd236a",
+      "input": {
+        "heyBob": "Ending with ? means a question."
+      },
+      "expected": "Whatever.",
+      "actual": "Whatever.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "starting with whitespace",
+      "uuid": "5371ef75-d9ea-4103-bcfa-2da973ddec1b",
+      "input": {
+        "heyBob": "         hmmmmmmm..."
+      },
+      "expected": "Whatever.",
+      "actual": "Whatever.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "non-question ending with whitespace",
+      "uuid": "12983553-8601-46a8-92fa-fcaa3bc4a2a0",
+      "input": {
+        "heyBob": "This is a statement ending with whitespace      "
+      },
+      "expected": "Whatever.",
+      "actual": "Whatever.",
+      "returncode": 0,
+      "stderr": "",
+      "passed": true
+    }
+  ],
+  "generation_runs": [
+    {
+      "run": 1,
+      "returncode": 0,
+      "case_names": [
+        "asking a question",
+        "shouting",
+        "forceful question",
+        "silence",
+        "stating something",
+        "asking a numeric question",
+        "asking gibberish",
+        "question with no letters",
+        "non-letters with question",
+        "prattling on",
+        "ending with whitespace",
+        "multiple line question",
+        "shouting gibberish",
+        "shouting a statement containing a question mark",
+        "shouting numbers",
+        "shouting with special characters",
+        "shouting with no exclamation mark",
+        "prolonged silence",
+        "alternate silence",
+        "other whitespace",
+        "talking forcefully",
+        "using acronyms in regular speech",
+        "no letters",
+        "statement containing question mark",
+        "starting with whitespace",
+        "non-question ending with whitespace"
+      ],
+      "sha256": "bc683627155ca7351e8ab14baebe47c8e3e89b2077600f83a6bd3f7051ac23cd",
+      "timestamp_normalized_match": true
+    },
+    {
+      "run": 2,
+      "returncode": 0,
+      "case_names": [
+        "asking a question",
+        "shouting",
+        "forceful question",
+        "silence",
+        "stating something",
+        "asking a numeric question",
+        "asking gibberish",
+        "question with no letters",
+        "non-letters with question",
+        "prattling on",
+        "ending with whitespace",
+        "multiple line question",
+        "shouting gibberish",
+        "shouting a statement containing a question mark",
+        "shouting numbers",
+        "shouting with special characters",
+        "shouting with no exclamation mark",
+        "prolonged silence",
+        "alternate silence",
+        "other whitespace",
+        "talking forcefully",
+        "using acronyms in regular speech",
+        "no letters",
+        "statement containing question mark",
+        "starting with whitespace",
+        "non-question ending with whitespace"
+      ],
+      "sha256": "bc683627155ca7351e8ab14baebe47c8e3e89b2077600f83a6bd3f7051ac23cd",
+      "timestamp_normalized_match": true
+    }
+  ],
+  "canonical_input": {
+    "path": "work/R07-T022/canonical-data.json",
+    "sha256": "02b79f535d7613c6faba88cb909462892b101dc799b2df68dd9ffb5ec1d1284d",
+    "case_count": 26
+  },
+  "expected_case_names": [
+    "asking a question",
+    "shouting",
+    "forceful question",
+    "silence",
+    "stating something",
+    "asking a numeric question",
+    "asking gibberish",
+    "question with no letters",
+    "non-letters with question",
+    "prattling on",
+    "ending with whitespace",
+    "multiple line question",
+    "shouting gibberish",
+    "shouting a statement containing a question mark",
+    "shouting numbers",
+    "shouting with special characters",
+    "shouting with no exclamation mark",
+    "prolonged silence",
+    "alternate silence",
+    "other whitespace",
+    "talking forcefully",
+    "using acronyms in regular speech",
+    "no letters",
+    "statement containing question mark",
+    "starting with whitespace",
+    "non-question ending with whitespace"
+  ],
+  "anchor_cases": [
+    {
+      "uuid": "8a2e771d-d6f1-4e3f-b6c6-b41495556e37",
+      "name": "asking a question",
+      "selected": true
+    },
+    {
+      "uuid": "a5193c61-4a92-4f68-93e2-f554eb385ec6",
+      "name": "forceful question",
+      "selected": true
+    },
+    {
+      "uuid": "e162fead-606f-437a-a166-d051915cea8e",
+      "name": "stating something",
+      "selected": true
+    }
+  ],
+  "tool_versions": {
+    "python": "Python 3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "jinja2": "3.1.6",
+    "toml_parser": "1.0.3"
+  },
+  "baseline": {
+    "path": "exercises/practice/bob/test-bob.bats",
+    "sha256": "c895106848fbe3907306a0814240fd2f1ec4850ed63c8528aa75898322617efd",
+    "case_names": [
+      "asking a question",
+      "shouting",
+      "forceful question",
+      "silence",
+      "stating something",
+      "asking a numeric question",
+      "asking gibberish",
+      "question with no letters",
+      "non-letters with question",
+      "prattling on",
+      "ending with whitespace",
+      "multiple line question",
+      "shouting gibberish",
+      "shouting a statement containing a question mark",
+      "shouting numbers",
+      "shouting with special characters",
+      "shouting with no exclamation mark",
+      "prolonged silence",
+      "alternate silence",
+      "other whitespace",
+      "talking forcefully",
+      "using acronyms in regular speech",
+      "no letters",
+      "statement containing question mark",
+      "starting with whitespace",
+      "non-question ending with whitespace"
+    ]
+  },
+  "generation_runs_agree": true,
+  "validator": {
+    "returncode": 0,
+    "planned_tests": [
+      26
+    ],
+    "passed_count": 26,
+    "failed_lines": [],
+    "output": "Processing bob\n1..26\nok 1 asking a question\nok 2 shouting\nok 3 forceful question\nok 4 silence\nok 5 stating something\nok 6 asking a numeric question\nok 7 asking gibberish\nok 8 question with no letters\nok 9 non-letters with question\nok 10 prattling on\nok 11 ending with whitespace\nok 12 multiple line question\nok 13 shouting gibberish\nok 14 shouting a statement containing a question mark\nok 15 shouting numbers\nok 16 shouting with special characters\nok 17 shouting with no exclamation mark\nok 18 prolonged silence\nok 19 alternate silence\nok 20 other whitespace\nok 21 talking forcefully\nok 22 using acronyms in regular speech\nok 23 no letters\nok 24 statement containing question mark\nok 25 starting with whitespace\nok 26 non-question ending with whitespace\n",
+    "stderr": ""
+  },
+  "learner_solution": {
+    "path": "exercises/practice/bob/bob.jq",
+    "sha256_before": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+    "sha256_after": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+    "unchanged": true
+  },
+  "failures": []
+}
