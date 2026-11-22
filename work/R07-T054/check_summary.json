@@ -1,0 +1,24 @@
+{
+  "task_id": "R07-T054",
+  "exercise": "transpose",
+  "tool_versions": {
+    "python": "3.15.2",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "validation_results": {
+    "returncode": 0,
+    "tests_planned": 12,
+    "tests_passed": 12,
+    "tests_failed": 0,
+    "anchor_cases_verified": [
+      "empty string",
+      "two characters in a row",
+      "two characters in a column"
+    ]
+  },
+  "refactor_description": "Extracted $SPACE_CODEPOINT constant (ASCII 32), guarded rtrim_nulls against infinite recursion with idiomatic until expression, renamed restringify to row_to_string, and added explanatory comments documenting the exercise-specific trailing vs internal null padding invariant.",
+  "learner_stub_unsolved": true
+}
