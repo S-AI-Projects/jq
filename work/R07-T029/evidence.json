@@ -1,0 +1,311 @@
+{
+  "exercise": "exercises/practice/diamond",
+  "tool_versions": {
+    "python": "3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  },
+  "cases": [
+    {
+      "name": "Degenerate case with a single 'A' row",
+      "input": {
+        "letter": "A"
+      },
+      "expected": "A"
+    },
+    {
+      "name": "Degenerate case with no row containing 3 distinct groups of spaces",
+      "input": {
+        "letter": "B"
+      },
+      "expected": ".A.\nB.B\n.A."
+    },
+    {
+      "name": "Smallest non-degenerate case with odd diamond side length",
+      "input": {
+        "letter": "C"
+      },
+      "expected": "..A..\n.B.B.\nC...C\n.B.B.\n..A.."
+    },
+    {
+      "name": "Smallest non-degenerate case with even diamond side length",
+      "input": {
+        "letter": "D"
+      },
+      "expected": "...A...\n..B.B..\n.C...C.\nD.....D\n.C...C.\n..B.B..\n...A..."
+    },
+    {
+      "name": "Largest possible diamond",
+      "input": {
+        "letter": "Z"
+      },
+      "expected": ".........................A.........................\n........................B.B........................\n.......................C...C.......................\n......................D.....D......................\n.....................E.......E.....................\n....................F.........F....................\n...................G...........G...................\n..................H.............H..................\n.................I...............I.................\n................J.................J................\n...............K...................K...............\n..............L.....................L..............\n.............M.......................M.............\n............N.........................N............\n...........O...........................O...........\n..........P.............................P..........\n.........Q...............................Q.........\n........R.................................R........\n.......S...................................S.......\n......T.....................................T......\n.....U.......................................U.....\n....V.........................................V....\n...W...........................................W...\n..X.............................................X..\n.Y...............................................Y.\nZ.................................................Z\n.Y...............................................Y.\n..X.............................................X..\n...W...........................................W...\n....V.........................................V....\n.....U.......................................U.....\n......T.....................................T......\n.......S...................................S.......\n........R.................................R........\n.........Q...............................Q.........\n..........P.............................P..........\n...........O...........................O...........\n............N.........................N............\n.............M.......................M.............\n..............L.....................L..............\n...............K...................K...............\n................J.................J................\n.................I...............I.................\n..................H.............H..................\n...................G...........G...................\n....................F.........F....................\n.....................E.......E.....................\n......................D.....D......................\n.......................C...C.......................\n........................B.B........................\n.........................A........................."
+    }
+  ],
+  "subprocess_runs": [
+    {
+      "label": "reference case: Degenerate case with a single 'A' row",
+      "command": [
+        "jq",
+        "-r",
+        "-f",
+        "diamond.jq"
+      ],
+      "learner_hashes_before": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "return_code": 0,
+      "stdout": "A\n",
+      "stderr": "",
+      "learner_hashes_after": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_hashes_unchanged": true
+    },
+    {
+      "label": "reference case: Degenerate case with no row containing 3 distinct groups of spaces",
+      "command": [
+        "jq",
+        "-r",
+        "-f",
+        "diamond.jq"
+      ],
+      "learner_hashes_before": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "return_code": 0,
+      "stdout": ".A.\nB.B\n.A.\n",
+      "stderr": "",
+      "learner_hashes_after": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_hashes_unchanged": true
+    },
+    {
+      "label": "reference case: Smallest non-degenerate case with odd diamond side length",
+      "command": [
+        "jq",
+        "-r",
+        "-f",
+        "diamond.jq"
+      ],
+      "learner_hashes_before": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "return_code": 0,
+      "stdout": "..A..\n.B.B.\nC...C\n.B.B.\n..A..\n",
+      "stderr": "",
+      "learner_hashes_after": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_hashes_unchanged": true
+    },
+    {
+      "label": "reference case: Smallest non-degenerate case with even diamond side length",
+      "command": [
+        "jq",
+        "-r",
+        "-f",
+        "diamond.jq"
+      ],
+      "learner_hashes_before": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "return_code": 0,
+      "stdout": "...A...\n..B.B..\n.C...C.\nD.....D\n.C...C.\n..B.B..\n...A...\n",
+      "stderr": "",
+      "learner_hashes_after": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_hashes_unchanged": true
+    },
+    {
+      "label": "reference case: Largest possible diamond",
+      "command": [
+        "jq",
+        "-r",
+        "-f",
+        "diamond.jq"
+      ],
+      "learner_hashes_before": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "return_code": 0,
+      "stdout": ".........................A.........................\n........................B.B........................\n.......................C...C.......................\n......................D.....D......................\n.....................E.......E.....................\n....................F.........F....................\n...................G...........G...................\n..................H.............H..................\n.................I...............I.................\n................J.................J................\n...............K...................K...............\n..............L.....................L..............\n.............M.......................M.............\n............N.........................N............\n...........O...........................O...........\n..........P.............................P..........\n.........Q...............................Q.........\n........R.................................R........\n.......S...................................S.......\n......T.....................................T......\n.....U.......................................U.....\n....V.........................................V....\n...W...........................................W...\n..X.............................................X..\n.Y...............................................Y.\nZ.................................................Z\n.Y...............................................Y.\n..X.............................................X..\n...W...........................................W...\n....V.........................................V....\n.....U.......................................U.....\n......T.....................................T......\n.......S...................................S.......\n........R.................................R........\n.........Q...............................Q.........\n..........P.............................P..........\n...........O...........................O...........\n............N.........................N............\n.............M.......................M.............\n..............L.....................L..............\n...............K...................K...............\n................J.................J................\n.................I...............I.................\n..................H.............H..................\n...................G...........G...................\n....................F.........F....................\n.....................E.......E.....................\n......................D.....D......................\n.......................C...C.......................\n........................B.B........................\n.........................A.........................\n",
+      "stderr": "",
+      "learner_hashes_after": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_hashes_unchanged": true
+    },
+    {
+      "label": "real-reference validator",
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/diamond"
+      ],
+      "learner_hashes_before": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "return_code": 0,
+      "stdout": "Processing diamond\n1..5\nok 1 Degenerate case with a single 'A' row\nok 2 Degenerate case with no row containing 3 distinct groups of spaces\nok 3 Smallest non-degenerate case with odd diamond side length\nok 4 Smallest non-degenerate case with even diamond side length\nok 5 Largest possible diamond\n",
+      "stderr": "",
+      "learner_hashes_after": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_hashes_unchanged": true
+    },
+    {
+      "label": "failing-reference validator",
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/diamond"
+      ],
+      "learner_hashes_before": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "return_code": 1,
+      "stdout": "Processing diamond\n1..5\nnot ok 1 Degenerate case with a single 'A' row\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 15)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\nnot ok 2 Degenerate case with no row containing 3 distinct groups of spaces\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 32)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\nnot ok 3 Smallest non-degenerate case with odd diamond side length\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 51)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\nnot ok 4 Smallest non-degenerate case with even diamond side length\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 72)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\nnot ok 5 Largest possible diamond\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 95)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\n",
+      "stderr": "",
+      "learner_hashes_after": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_hashes_unchanged": true
+    },
+    {
+      "label": "empty-selection validator",
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/diamond"
+      ],
+      "learner_hashes_before": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "return_code": 0,
+      "stdout": "Processing diamond\n1..5\nok 1 Degenerate case with a single 'A' row # skip forced empty test selection\nok 2 Degenerate case with no row containing 3 distinct groups of spaces # skip forced empty test selection\nok 3 Smallest non-degenerate case with odd diamond side length # skip forced empty test selection\nok 4 Smallest non-degenerate case with even diamond side length # skip forced empty test selection\nok 5 Largest possible diamond # skip forced empty test selection\n",
+      "stderr": "",
+      "learner_hashes_after": {
+        "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_hashes_unchanged": true
+    }
+  ],
+  "validation_runs": {
+    "real-reference": {
+      "planned_tests": 5,
+      "reported_test_results": 5,
+      "executed_tests": 5,
+      "skipped_tests": 0,
+      "failed_tests": 0,
+      "missing_test_names": [],
+      "reasons": [],
+      "return_code": 0,
+      "stdout": "Processing diamond\n1..5\nok 1 Degenerate case with a single 'A' row\nok 2 Degenerate case with no row containing 3 distinct groups of spaces\nok 3 Smallest non-degenerate case with odd diamond side length\nok 4 Smallest non-degenerate case with even diamond side length\nok 5 Largest possible diamond\n",
+      "stderr": "",
+      "success": true,
+      "checker_exit_status": 0,
+      "temporary_directory_cleaned": true
+    },
+    "failing-reference": {
+      "planned_tests": 5,
+      "reported_test_results": 5,
+      "executed_tests": 5,
+      "skipped_tests": 0,
+      "failed_tests": 5,
+      "missing_test_names": [],
+      "reasons": [
+        "validator exited with status 1",
+        "5 Bats assertion(s) failed"
+      ],
+      "return_code": 1,
+      "stdout": "Processing diamond\n1..5\nnot ok 1 Degenerate case with a single 'A' row\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 15)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\nnot ok 2 Degenerate case with no row containing 3 distinct groups of spaces\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 32)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\nnot ok 3 Smallest non-degenerate case with odd diamond side length\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 51)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\nnot ok 4 Smallest non-degenerate case with even diamond side length\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 72)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\nnot ok 5 Largest possible diamond\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-diamond.bats, line 95)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate checker failure\n# --\n#\n",
+      "stderr": "",
+      "success": false,
+      "checker_exit_status": 1,
+      "temporary_directory_cleaned": true
+    },
+    "empty-selection": {
+      "planned_tests": 5,
+      "reported_test_results": 5,
+      "executed_tests": 0,
+      "skipped_tests": 5,
+      "failed_tests": 0,
+      "missing_test_names": [],
+      "reasons": [
+        "zero tests executed"
+      ],
+      "return_code": 0,
+      "stdout": "Processing diamond\n1..5\nok 1 Degenerate case with a single 'A' row # skip forced empty test selection\nok 2 Degenerate case with no row containing 3 distinct groups of spaces # skip forced empty test selection\nok 3 Smallest non-degenerate case with odd diamond side length # skip forced empty test selection\nok 4 Smallest non-degenerate case with even diamond side length # skip forced empty test selection\nok 5 Largest possible diamond # skip forced empty test selection\n",
+      "stderr": "",
+      "success": false,
+      "checker_exit_status": 1,
+      "temporary_directory_cleaned": true
+    }
+  },
+  "failures": [],
+  "integrity_failures": [],
+  "learner_hashes_final": {
+    "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+  },
+  "learner_hashes_initial": {
+    "exercises/practice/diamond/diamond.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+  },
+  "case_runs": [
+    {
+      "name": "Degenerate case with a single 'A' row",
+      "input": {
+        "letter": "A"
+      },
+      "expected": "A",
+      "actual": "A",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "Degenerate case with no row containing 3 distinct groups of spaces",
+      "input": {
+        "letter": "B"
+      },
+      "expected": ".A.\nB.B\n.A.",
+      "actual": ".A.\nB.B\n.A.",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "Smallest non-degenerate case with odd diamond side length",
+      "input": {
+        "letter": "C"
+      },
+      "expected": "..A..\n.B.B.\nC...C\n.B.B.\n..A..",
+      "actual": "..A..\n.B.B.\nC...C\n.B.B.\n..A..",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "Smallest non-degenerate case with even diamond side length",
+      "input": {
+        "letter": "D"
+      },
+      "expected": "...A...\n..B.B..\n.C...C.\nD.....D\n.C...C.\n..B.B..\n...A...",
+      "actual": "...A...\n..B.B..\n.C...C.\nD.....D\n.C...C.\n..B.B..\n...A...",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "Largest possible diamond",
+      "input": {
+        "letter": "Z"
+      },
+      "expected": ".........................A.........................\n........................B.B........................\n.......................C...C.......................\n......................D.....D......................\n.....................E.......E.....................\n....................F.........F....................\n...................G...........G...................\n..................H.............H..................\n.................I...............I.................\n................J.................J................\n...............K...................K...............\n..............L.....................L..............\n.............M.......................M.............\n............N.........................N............\n...........O...........................O...........\n..........P.............................P..........\n.........Q...............................Q.........\n........R.................................R........\n.......S...................................S.......\n......T.....................................T......\n.....U.......................................U.....\n....V.........................................V....\n...W...........................................W...\n..X.............................................X..\n.Y...............................................Y.\nZ.................................................Z\n.Y...............................................Y.\n..X.............................................X..\n...W...........................................W...\n....V.........................................V....\n.....U.......................................U.....\n......T.....................................T......\n.......S...................................S.......\n........R.................................R........\n.........Q...............................Q.........\n..........P.............................P..........\n...........O...........................O...........\n............N.........................N............\n.............M.......................M.............\n..............L.....................L..............\n...............K...................K...............\n................J.................J................\n.................I...............I.................\n..................H.............H..................\n...................G...........G...................\n....................F.........F....................\n.....................E.......E.....................\n......................D.....D......................\n.......................C...C.......................\n........................B.B........................\n.........................A.........................",
+      "actual": ".........................A.........................\n........................B.B........................\n.......................C...C.......................\n......................D.....D......................\n.....................E.......E.....................\n....................F.........F....................\n...................G...........G...................\n..................H.............H..................\n.................I...............I.................\n................J.................J................\n...............K...................K...............\n..............L.....................L..............\n.............M.......................M.............\n............N.........................N............\n...........O...........................O...........\n..........P.............................P..........\n.........Q...............................Q.........\n........R.................................R........\n.......S...................................S.......\n......T.....................................T......\n.....U.......................................U.....\n....V.........................................V....\n...W...........................................W...\n..X.............................................X..\n.Y...............................................Y.\nZ.................................................Z\n.Y...............................................Y.\n..X.............................................X..\n...W...........................................W...\n....V.........................................V....\n.....U.......................................U.....\n......T.....................................T......\n.......S...................................S.......\n........R.................................R........\n.........Q...............................Q.........\n..........P.............................P..........\n...........O...........................O...........\n............N.........................N............\n.............M.......................M.............\n..............L.....................L..............\n...............K...................K...............\n................J.................J................\n.................I...............I.................\n..................H.............H..................\n...................G...........G...................\n....................F.........F....................\n.....................E.......E.....................\n......................D.....D......................\n.......................C...C.......................\n........................B.B........................\n.........................A.........................",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    }
+  ]
+}
