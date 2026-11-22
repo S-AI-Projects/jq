@@ -32,3 +32,9 @@ should all produce the output
 `6139950253`
 
 **Note:** As this exercise only deals with telephone numbers used in NANP-countries, only 1 is considered a valid country code.
+
+### Implementation trade-off
+
+The reference removes the permitted formatting characters with one regular-expression substitution before validating the remaining number. Another way to think about the same cleanup is to walk over the characters and append each character unless it is one of the allowed formatting marks.
+
+For example, walking through `223.456   7890` skips the dot and spaces and leaves `2234567890`. A character-by-character approach can make the exact set of ignored characters visible when explaining the cleanup, while the reference's single `gsub` is more compact. The walk materializes the character sequence and builds an additional cleaned string, so it uses temporary space and does more per-character work; the regular-expression form avoids that explicit intermediate sequence. Both must leave letters and other punctuation in place for the later validation checks.

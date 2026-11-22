@@ -1,0 +1,789 @@
+{
+  "exercise": "exercises/practice/phone-number",
+  "tool_versions": {
+    "python": "3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  },
+  "cases": [
+    {
+      "name": "cleans the number",
+      "input": {
+        "phrase": "(223) 456-7890"
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "jq_flag": "-r"
+    },
+    {
+      "name": "cleans numbers with dots",
+      "input": {
+        "phrase": "223.456.7890"
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "jq_flag": "-r"
+    },
+    {
+      "name": "cleans numbers with multiple spaces",
+      "input": {
+        "phrase": "223 456   7890   "
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "jq_flag": "-r"
+    },
+    {
+      "name": "invalid when 9 digits",
+      "input": {
+        "phrase": "123456789"
+      },
+      "expected": "must not be fewer than 10 digits",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid when 11 digits does not start with a 1",
+      "input": {
+        "phrase": "22234567890"
+      },
+      "expected": "11 digits must start with 1",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "valid when 11 digits and starting with 1",
+      "input": {
+        "phrase": "12234567890"
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "jq_flag": "-r"
+    },
+    {
+      "name": "valid when 11 digits and starting with 1 even with punctuation",
+      "input": {
+        "phrase": "+1 (223) 456-7890"
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "jq_flag": "-r"
+    },
+    {
+      "name": "invalid when more than 11 digits",
+      "input": {
+        "phrase": "321234567890"
+      },
+      "expected": "must not be greater than 11 digits",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid with letters",
+      "input": {
+        "phrase": "523-abc-7890"
+      },
+      "expected": "letters not permitted",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid with punctuations",
+      "input": {
+        "phrase": "523-@:!-7890"
+      },
+      "expected": "punctuations not permitted",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid if area code starts with 0",
+      "input": {
+        "phrase": "(023) 456-7890"
+      },
+      "expected": "area code cannot start with zero",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid if area code starts with 1",
+      "input": {
+        "phrase": "(123) 456-7890"
+      },
+      "expected": "area code cannot start with one",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid if exchange code starts with 0",
+      "input": {
+        "phrase": "(223) 056-7890"
+      },
+      "expected": "exchange code cannot start with zero",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid if exchange code starts with 1",
+      "input": {
+        "phrase": "(223) 156-7890"
+      },
+      "expected": "exchange code cannot start with one",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid if area code starts with 0 on valid 11-digit number",
+      "input": {
+        "phrase": "1 (023) 456-7890"
+      },
+      "expected": "area code cannot start with zero",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid if area code starts with 1 on valid 11-digit number",
+      "input": {
+        "phrase": "1 (123) 456-7890"
+      },
+      "expected": "area code cannot start with one",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid if exchange code starts with 0 on valid 11-digit number",
+      "input": {
+        "phrase": "1 (223) 056-7890"
+      },
+      "expected": "exchange code cannot start with zero",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    },
+    {
+      "name": "invalid if exchange code starts with 1 on valid 11-digit number",
+      "input": {
+        "phrase": "1 (223) 156-7890"
+      },
+      "expected": "exchange code cannot start with one",
+      "expected_failure": true,
+      "jq_flag": "-c"
+    }
+  ],
+  "implementations": {
+    "reference": {
+      "path": "exercises/practice/phone-number/.meta/example.jq",
+      "main_operation": "gsub(\"[() +.-]\"; \"\")",
+      "input_copy_only": true
+    },
+    "alternative": {
+      "approach": "explode code points, reduce into normalized text, then apply identical validations",
+      "source": "def assert(cond; err): if cond then . else (err | halt_error) end;\ndef refute(cond; err): assert(cond | not; err);\n\ndef clean:\n  reduce (.phrase | explode[]) as $codepoint\n    (\"\";\n      . + (\n        if ($codepoint == 32 or $codepoint == 40 or $codepoint == 41\n            or $codepoint == 43 or $codepoint == 45 or $codepoint == 46) then\n          \"\"\n        else\n          ([$codepoint] | implode)\n        end\n      )\n    );\n\nclean\n| assert(length >= 10; \"must not be fewer than 10 digits\")\n| assert(length <= 11; \"must not be greater than 11 digits\")\n| if length == 11 then\n    assert(startswith(\"1\"); \"11 digits must start with 1\")\n    | .[1:length]\n  end\n| refute(test(\"[[:alpha:]]\"); \"letters not permitted\")\n| refute(test(\"[^[:digit:]]\"); \"punctuations not permitted\")\n| refute(startswith(\"0\"); \"area code cannot start with zero\")\n| refute(startswith(\"1\"); \"area code cannot start with one\")\n| refute(test(\"^...0\"); \"exchange code cannot start with zero\")\n| refute(test(\"^...1\"); \"exchange code cannot start with one\")\n",
+      "input_copy_only": true
+    }
+  },
+  "comparisons": [
+    {
+      "name": "cleans the number",
+      "input": {
+        "phrase": "(223) 456-7890"
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "reference": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "cleans numbers with dots",
+      "input": {
+        "phrase": "223.456.7890"
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "reference": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "cleans numbers with multiple spaces",
+      "input": {
+        "phrase": "223 456   7890   "
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "reference": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid when 9 digits",
+      "input": {
+        "phrase": "123456789"
+      },
+      "expected": "must not be fewer than 10 digits",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "must not be fewer than 10 digits",
+        "stderr": "must not be fewer than 10 digits",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "must not be fewer than 10 digits",
+        "stderr": "must not be fewer than 10 digits",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid when 11 digits does not start with a 1",
+      "input": {
+        "phrase": "22234567890"
+      },
+      "expected": "11 digits must start with 1",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "11 digits must start with 1",
+        "stderr": "11 digits must start with 1",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "11 digits must start with 1",
+        "stderr": "11 digits must start with 1",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "valid when 11 digits and starting with 1",
+      "input": {
+        "phrase": "12234567890"
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "reference": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "valid when 11 digits and starting with 1 even with punctuation",
+      "input": {
+        "phrase": "+1 (223) 456-7890"
+      },
+      "expected": "2234567890",
+      "expected_failure": false,
+      "reference": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 0,
+        "expected_failure": false,
+        "actual_output": "2234567890",
+        "stderr": "",
+        "stdout": "2234567890\n",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid when more than 11 digits",
+      "input": {
+        "phrase": "321234567890"
+      },
+      "expected": "must not be greater than 11 digits",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "must not be greater than 11 digits",
+        "stderr": "must not be greater than 11 digits",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "must not be greater than 11 digits",
+        "stderr": "must not be greater than 11 digits",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid with letters",
+      "input": {
+        "phrase": "523-abc-7890"
+      },
+      "expected": "letters not permitted",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "letters not permitted",
+        "stderr": "letters not permitted",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "letters not permitted",
+        "stderr": "letters not permitted",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid with punctuations",
+      "input": {
+        "phrase": "523-@:!-7890"
+      },
+      "expected": "punctuations not permitted",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "punctuations not permitted",
+        "stderr": "punctuations not permitted",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "punctuations not permitted",
+        "stderr": "punctuations not permitted",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid if area code starts with 0",
+      "input": {
+        "phrase": "(023) 456-7890"
+      },
+      "expected": "area code cannot start with zero",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "area code cannot start with zero",
+        "stderr": "area code cannot start with zero",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "area code cannot start with zero",
+        "stderr": "area code cannot start with zero",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid if area code starts with 1",
+      "input": {
+        "phrase": "(123) 456-7890"
+      },
+      "expected": "area code cannot start with one",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "area code cannot start with one",
+        "stderr": "area code cannot start with one",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "area code cannot start with one",
+        "stderr": "area code cannot start with one",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid if exchange code starts with 0",
+      "input": {
+        "phrase": "(223) 056-7890"
+      },
+      "expected": "exchange code cannot start with zero",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "exchange code cannot start with zero",
+        "stderr": "exchange code cannot start with zero",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "exchange code cannot start with zero",
+        "stderr": "exchange code cannot start with zero",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid if exchange code starts with 1",
+      "input": {
+        "phrase": "(223) 156-7890"
+      },
+      "expected": "exchange code cannot start with one",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "exchange code cannot start with one",
+        "stderr": "exchange code cannot start with one",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "exchange code cannot start with one",
+        "stderr": "exchange code cannot start with one",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid if area code starts with 0 on valid 11-digit number",
+      "input": {
+        "phrase": "1 (023) 456-7890"
+      },
+      "expected": "area code cannot start with zero",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "area code cannot start with zero",
+        "stderr": "area code cannot start with zero",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "area code cannot start with zero",
+        "stderr": "area code cannot start with zero",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid if area code starts with 1 on valid 11-digit number",
+      "input": {
+        "phrase": "1 (123) 456-7890"
+      },
+      "expected": "area code cannot start with one",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "area code cannot start with one",
+        "stderr": "area code cannot start with one",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "area code cannot start with one",
+        "stderr": "area code cannot start with one",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid if exchange code starts with 0 on valid 11-digit number",
+      "input": {
+        "phrase": "1 (223) 056-7890"
+      },
+      "expected": "exchange code cannot start with zero",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "exchange code cannot start with zero",
+        "stderr": "exchange code cannot start with zero",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "exchange code cannot start with zero",
+        "stderr": "exchange code cannot start with zero",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    },
+    {
+      "name": "invalid if exchange code starts with 1 on valid 11-digit number",
+      "input": {
+        "phrase": "1 (223) 156-7890"
+      },
+      "expected": "exchange code cannot start with one",
+      "expected_failure": true,
+      "reference": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "exchange code cannot start with one",
+        "stderr": "exchange code cannot start with one",
+        "stdout": "",
+        "passed": true
+      },
+      "alternative": {
+        "return_code": 5,
+        "expected_failure": true,
+        "actual_output": "exchange code cannot start with one",
+        "stderr": "exchange code cannot start with one",
+        "stdout": "",
+        "passed": true
+      },
+      "same_behavior": true,
+      "passed_by_both": true
+    }
+  ],
+  "validators": {
+    "reference": {
+      "plan_count": 18,
+      "plan_entries": 1,
+      "reported_test_count": 18,
+      "executed_test_count": 18,
+      "skipped_test_count": 0,
+      "assertion_failure_count": 0,
+      "failed_test_names": [],
+      "test_names": [
+        "cleans the number",
+        "cleans numbers with dots",
+        "cleans numbers with multiple spaces",
+        "invalid when 9 digits",
+        "invalid when 11 digits does not start with a 1",
+        "valid when 11 digits and starting with 1",
+        "valid when 11 digits and starting with 1 even with punctuation",
+        "invalid when more than 11 digits",
+        "invalid with letters",
+        "invalid with punctuations",
+        "invalid if area code starts with 0",
+        "invalid if area code starts with 1",
+        "invalid if exchange code starts with 0",
+        "invalid if exchange code starts with 1",
+        "invalid if area code starts with 0 on valid 11-digit number",
+        "invalid if area code starts with 1 on valid 11-digit number",
+        "invalid if exchange code starts with 0 on valid 11-digit number",
+        "invalid if exchange code starts with 1 on valid 11-digit number"
+      ],
+      "checks": {
+        "single_tap_plan": true,
+        "plan_matches_results": true,
+        "reported_count_matches": true,
+        "nonzero_test_count": true,
+        "all_cases_executed": true,
+        "no_skips": true,
+        "no_assertion_failures": true,
+        "child_return_code_zero": true
+      },
+      "label": "reference",
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/phone-number"
+      ],
+      "return_code": 0,
+      "stdout": "Processing phone-number\n1..18\nok 1 cleans the number\nok 2 cleans numbers with dots\nok 3 cleans numbers with multiple spaces\nok 4 invalid when 9 digits\nok 5 invalid when 11 digits does not start with a 1\nok 6 valid when 11 digits and starting with 1\nok 7 valid when 11 digits and starting with 1 even with punctuation\nok 8 invalid when more than 11 digits\nok 9 invalid with letters\nok 10 invalid with punctuations\nok 11 invalid if area code starts with 0\nok 12 invalid if area code starts with 1\nok 13 invalid if exchange code starts with 0\nok 14 invalid if exchange code starts with 1\nok 15 invalid if area code starts with 0 on valid 11-digit number\nok 16 invalid if area code starts with 1 on valid 11-digit number\nok 17 invalid if exchange code starts with 0 on valid 11-digit number\nok 18 invalid if exchange code starts with 1 on valid 11-digit number\n",
+      "stderr": "",
+      "temporary_copy_cleaned": true,
+      "passed": true
+    },
+    "alternative": {
+      "plan_count": 18,
+      "plan_entries": 1,
+      "reported_test_count": 18,
+      "executed_test_count": 18,
+      "skipped_test_count": 0,
+      "assertion_failure_count": 0,
+      "failed_test_names": [],
+      "test_names": [
+        "cleans the number",
+        "cleans numbers with dots",
+        "cleans numbers with multiple spaces",
+        "invalid when 9 digits",
+        "invalid when 11 digits does not start with a 1",
+        "valid when 11 digits and starting with 1",
+        "valid when 11 digits and starting with 1 even with punctuation",
+        "invalid when more than 11 digits",
+        "invalid with letters",
+        "invalid with punctuations",
+        "invalid if area code starts with 0",
+        "invalid if area code starts with 1",
+        "invalid if exchange code starts with 0",
+        "invalid if exchange code starts with 1",
+        "invalid if area code starts with 0 on valid 11-digit number",
+        "invalid if area code starts with 1 on valid 11-digit number",
+        "invalid if exchange code starts with 0 on valid 11-digit number",
+        "invalid if exchange code starts with 1 on valid 11-digit number"
+      ],
+      "checks": {
+        "single_tap_plan": true,
+        "plan_matches_results": true,
+        "reported_count_matches": true,
+        "nonzero_test_count": true,
+        "all_cases_executed": true,
+        "no_skips": true,
+        "no_assertion_failures": true,
+        "child_return_code_zero": true
+      },
+      "label": "alternative",
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/phone-number"
+      ],
+      "return_code": 0,
+      "stdout": "Processing phone-number\n1..18\nok 1 cleans the number\nok 2 cleans numbers with dots\nok 3 cleans numbers with multiple spaces\nok 4 invalid when 9 digits\nok 5 invalid when 11 digits does not start with a 1\nok 6 valid when 11 digits and starting with 1\nok 7 valid when 11 digits and starting with 1 even with punctuation\nok 8 invalid when more than 11 digits\nok 9 invalid with letters\nok 10 invalid with punctuations\nok 11 invalid if area code starts with 0\nok 12 invalid if area code starts with 1\nok 13 invalid if exchange code starts with 0\nok 14 invalid if exchange code starts with 1\nok 15 invalid if area code starts with 0 on valid 11-digit number\nok 16 invalid if area code starts with 1 on valid 11-digit number\nok 17 invalid if exchange code starts with 0 on valid 11-digit number\nok 18 invalid if exchange code starts with 1 on valid 11-digit number\n",
+      "stderr": "",
+      "temporary_copy_cleaned": true,
+      "passed": true
+    }
+  },
+  "learner_solution_hashes": {
+    "before": {
+      "exercises/practice/phone-number/phone-number.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+    },
+    "after": {
+      "exercises/practice/phone-number/phone-number.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+    },
+    "unchanged": true
+  },
+  "failures": [],
+  "worked_example": {
+    "input": {
+      "phrase": "223.456   7890"
+    },
+    "expected": "2234567890",
+    "reference": {
+      "return_code": 0,
+      "expected_failure": false,
+      "actual_output": "2234567890",
+      "stderr": "",
+      "stdout": "2234567890\n",
+      "passed": true
+    },
+    "alternative": {
+      "return_code": 0,
+      "expected_failure": false,
+      "actual_output": "2234567890",
+      "stderr": "",
+      "stdout": "2234567890\n",
+      "passed": true
+    },
+    "passed": true
+  },
+  "passed": true
+}
