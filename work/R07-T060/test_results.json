@@ -1,0 +1,46 @@
+[
+  {
+    "name": "0 eggs",
+    "input": {
+      "number": 0
+    },
+    "expected": 0,
+    "actual": "0",
+    "returncode": 0,
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "1 egg",
+    "input": {
+      "number": 16
+    },
+    "expected": 1,
+    "actual": "1",
+    "returncode": 0,
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "4 eggs",
+    "input": {
+      "number": 89
+    },
+    "expected": 4,
+    "actual": "4",
+    "returncode": 0,
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "13 eggs",
+    "input": {
+      "number": 2000000000
+    },
+    "expected": 13,
+    "actual": "13",
+    "returncode": 0,
+    "stderr": "",
+    "passed": true
+  }
+]

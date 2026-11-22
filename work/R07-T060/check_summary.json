@@ -1,0 +1,22 @@
+{
+  "exercise": "exercises/practice/eliuds-eggs",
+  "cases_expected": 4,
+  "cases_reproduced": 4,
+  "cases_passed": 4,
+  "validator": {
+    "command": [
+      "bin/validate_one_exercise",
+      "exercises/practice/eliuds-eggs"
+    ],
+    "returncode": 0,
+    "planned_tests": 4,
+    "reported_test_results": 4,
+    "passed_tests": 4,
+    "failed_tests": 0,
+    "skipped_tests": 0,
+    "stdout": "Processing eliuds-eggs\n1..4\nok 1 0 eggs\nok 2 1 egg\nok 3 4 eggs\nok 4 13 eggs\n",
+    "stderr": ""
+  },
+  "learner_stub_unchanged": true,
+  "errors": []
+}
