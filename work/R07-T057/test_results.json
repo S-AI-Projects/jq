@@ -1,0 +1,17 @@
+{
+  "passed_tests": [
+    "ok 1 age on Earth",
+    "ok 2 age on Mercury",
+    "ok 3 age on Venus",
+    "ok 4 age on Mars",
+    "ok 5 age on Jupiter",
+    "ok 6 age on Saturn",
+    "ok 7 age on Uranus",
+    "ok 8 age on Neptune",
+    "ok 9 invalid planet causes error"
+  ],
+  "micro_examples": {
+    "example_1": 31.69,
+    "example_2": 280.88
+  }
+}
