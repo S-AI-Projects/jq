@@ -1,0 +1,194 @@
+{
+  "inputs": {
+    "real_config": {
+      "authors": [
+        "glennj"
+      ],
+      "files": {
+        "solution": [
+          "proverb.jq"
+        ],
+        "test": [
+          "test-proverb.bats"
+        ],
+        "example": [
+          ".meta/example.jq"
+        ],
+        "invalidator": [
+          "bats-extra.bash",
+          "bats-jq.bash"
+        ]
+      },
+      "blurb": "For want of a horseshoe nail, a kingdom was lost, or so the saying goes. Output the full text of this proverbial rhyme.",
+      "source": "Wikipedia",
+      "source_url": "https://en.wikipedia.org/wiki/For_Want_of_a_Nail"
+    }
+  },
+  "expected_vs_actual": {
+    "real_metadata": {
+      "expected": "all declared files resolve within the exercise directory",
+      "actual": {
+        "solution": [
+          "exercises/practice/proverb/proverb.jq"
+        ],
+        "test": [
+          "exercises/practice/proverb/test-proverb.bats"
+        ],
+        "example": [
+          "exercises/practice/proverb/.meta/example.jq"
+        ],
+        "invalidator": [
+          "exercises/practice/proverb/bats-extra.bash",
+          "exercises/practice/proverb/bats-jq.bash"
+        ]
+      },
+      "passed": true
+    },
+    "reference_tests": {
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/proverb"
+      ],
+      "expected_case_count": 6,
+      "executed_case_count": 6,
+      "skipped_case_count": 0,
+      "assertion_failure_count": 0,
+      "return_code": 0,
+      "stdout": "Processing proverb\n1..6\nok 1 zero pieces\nok 2 one piece\nok 3 two pieces\nok 4 three pieces\nok 5 full proverb\nok 6 four pieces modernized\n",
+      "stderr": "",
+      "learner_stub_sha256_before": {
+        "proverb.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "learner_stub_sha256_after": {
+        "proverb.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+      },
+      "test_names": [
+        "zero pieces",
+        "one piece",
+        "two pieces",
+        "three pieces",
+        "full proverb",
+        "four pieces modernized"
+      ],
+      "checks": {
+        "return_code_is_zero": true,
+        "planned_case_count_matches": true,
+        "result_count_matches": true,
+        "executed_case_count_matches": true,
+        "nonzero_test_count": true,
+        "no_cases_skipped": true,
+        "no_assertion_failures": true,
+        "test_names_match": true,
+        "required_cases_present": true,
+        "learner_stub_unchanged": true
+      },
+      "passed": true,
+      "forced_zero_tests": false,
+      "reference_path": "exercises/practice/proverb/.meta/example.jq",
+      "test_path": "exercises/practice/proverb/test-proverb.bats",
+      "solution_paths": [
+        "exercises/practice/proverb/proverb.jq"
+      ]
+    },
+    "zero_test_guard": {
+      "expected": "checker rejects a validator run with zero executed cases",
+      "actual": {
+        "checker_passed": false,
+        "validator_return_code": 0,
+        "planned_case_count": 6,
+        "executed_case_count": 0,
+        "skipped_case_count": 6,
+        "checks": {
+          "return_code_is_zero": true,
+          "planned_case_count_matches": true,
+          "result_count_matches": true,
+          "executed_case_count_matches": false,
+          "nonzero_test_count": false,
+          "no_cases_skipped": false,
+          "no_assertion_failures": true,
+          "test_names_match": true,
+          "required_cases_present": true,
+          "learner_stub_unchanged": true
+        }
+      },
+      "passed": true
+    },
+    "invalid_metadata_fixtures": [
+      {
+        "name": "missing-reference",
+        "input": {
+          "files": {
+            "solution": [
+              "solution.jq"
+            ],
+            "test": [
+              "test.bats"
+            ],
+            "example": [
+              ".meta/missing.jq"
+            ],
+            "editor": [
+              "bats-extra.bash",
+              "bats-jq.bash"
+            ]
+          }
+        },
+        "expected": "Missing file: .meta/missing.jq",
+        "actual": "Missing file: .meta/missing.jq",
+        "passed": true
+      },
+      {
+        "name": "missing-test",
+        "input": {
+          "files": {
+            "solution": [
+              "solution.jq"
+            ],
+            "test": [
+              "missing-test.bats"
+            ],
+            "example": [
+              ".meta/example.jq"
+            ],
+            "editor": [
+              "bats-extra.bash",
+              "bats-jq.bash"
+            ]
+          }
+        },
+        "expected": "Missing file: missing-test.bats",
+        "actual": "Missing file: missing-test.bats",
+        "passed": true
+      },
+      {
+        "name": "outside-exercise",
+        "input": {
+          "files": {
+            "solution": [
+              "solution.jq"
+            ],
+            "test": [
+              "test.bats"
+            ],
+            "example": [
+              "../outside.jq"
+            ],
+            "editor": [
+              "bats-extra.bash",
+              "bats-jq.bash"
+            ]
+          }
+        },
+        "expected": "Path is outside exercise: ../outside.jq",
+        "actual": "Path is outside exercise: ../outside.jq",
+        "passed": true
+      }
+    ]
+  },
+  "tool_versions": {
+    "python": "Python 3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  }
+}
