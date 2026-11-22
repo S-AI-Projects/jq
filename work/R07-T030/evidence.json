@@ -1,0 +1,70 @@
+{
+  "exercise": "exercises/practice/allergies",
+  "reference": ".meta/example.jq",
+  "learner_solution": "allergies.jq",
+  "tool_versions": {
+    "python": "3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  },
+  "cases": [
+    {
+      "name": "testing for eggs allergy:not allergic to anything",
+      "input": {
+        "property": "allergicTo",
+        "input": {
+          "item": "eggs",
+          "score": 0
+        }
+      },
+      "expected": "false",
+      "actual": "false",
+      "return_code": 0,
+      "stderr": ""
+    },
+    {
+      "name": "testing for eggs allergy:allergic only to eggs",
+      "input": {
+        "property": "allergicTo",
+        "input": {
+          "item": "eggs",
+          "score": 1
+        }
+      },
+      "expected": "true",
+      "actual": "true",
+      "return_code": 0,
+      "stderr": ""
+    },
+    {
+      "name": "testing for eggs allergy:allergic to eggs and something else",
+      "input": {
+        "property": "allergicTo",
+        "input": {
+          "item": "eggs",
+          "score": 3
+        }
+      },
+      "expected": "true",
+      "actual": "true",
+      "return_code": 0,
+      "stderr": ""
+    }
+  ],
+  "validation": {
+    "command": [
+      "bin/validate_one_exercise",
+      "exercises/practice/allergies"
+    ],
+    "return_code": 0,
+    "planned_tests": 50,
+    "reported_test_results": 50,
+    "executed_tests": 50,
+    "skipped_tests": 0,
+    "failed_tests": 0,
+    "stdout": "Processing allergies\n1..50\nok 1 testing for eggs allergy:not allergic to anything\nok 2 testing for eggs allergy:allergic only to eggs\nok 3 testing for eggs allergy:allergic to eggs and something else\nok 4 testing for eggs allergy:allergic to something, but not eggs\nok 5 testing for eggs allergy:allergic to everything\nok 6 testing for peanuts allergy:not allergic to anything\nok 7 testing for peanuts allergy:allergic only to peanuts\nok 8 testing for peanuts allergy:allergic to peanuts and something else\nok 9 testing for peanuts allergy:allergic to something, but not peanuts\nok 10 testing for peanuts allergy:allergic to everything\nok 11 testing for shellfish allergy:not allergic to anything\nok 12 testing for shellfish allergy:allergic only to shellfish\nok 13 testing for shellfish allergy:allergic to shellfish and something else\nok 14 testing for shellfish allergy:allergic to something, but not shellfish\nok 15 testing for shellfish allergy:allergic to everything\nok 16 testing for strawberries allergy:not allergic to anything\nok 17 testing for strawberries allergy:allergic only to strawberries\nok 18 testing for strawberries allergy:allergic to strawberries and something else\nok 19 testing for strawberries allergy:allergic to something, but not strawberries\nok 20 testing for strawberries allergy:allergic to everything\nok 21 testing for tomatoes allergy:not allergic to anything\nok 22 testing for tomatoes allergy:allergic only to tomatoes\nok 23 testing for tomatoes allergy:allergic to tomatoes and something else\nok 24 testing for tomatoes allergy:allergic to something, but not tomatoes\nok 25 testing for tomatoes allergy:allergic to everything\nok 26 testing for chocolate allergy:not allergic to anything\nok 27 testing for chocolate allergy:allergic only to chocolate\nok 28 testing for chocolate allergy:allergic to chocolate and something else\nok 29 testing for chocolate allergy:allergic to something, but not chocolate\nok 30 testing for chocolate allergy:allergic to everything\nok 31 testing for pollen allergy:not allergic to anything\nok 32 testing for pollen allergy:allergic only to pollen\nok 33 testing for pollen allergy:allergic to pollen and something else\nok 34 testing for pollen allergy:allergic to something, but not pollen\nok 35 testing for pollen allergy:allergic to everything\nok 36 testing for cats allergy:not allergic to anything\nok 37 testing for cats allergy:allergic only to cats\nok 38 testing for cats allergy:allergic to cats and something else\nok 39 testing for cats allergy:allergic to something, but not cats\nok 40 testing for cats allergy:allergic to everything\nok 41 list when::no allergies\nok 42 list when::just eggs\nok 43 list when::just peanuts\nok 44 list when::just strawberries\nok 45 list when::eggs and peanuts\nok 46 list when::more than eggs but not peanuts\nok 47 list when::lots of stuff\nok 48 list when::everything\nok 49 list when::no allergen score parts\nok 50 list when::no allergen score parts without highest valid score\n",
+    "stderr": ""
+  },
+  "learner_solution_unchanged": true
+}
