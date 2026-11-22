@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+from pathlib import PurePosixPath
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -19,6 +20,7 @@ EXERCISE = ROOT / "exercises/practice/proverb"
 CONFIG = EXERCISE / ".meta/config.json"
 VALIDATOR = ROOT / "bin/validate_one_exercise"
 EVIDENCE = Path(__file__).resolve().parent / "evidence.json"
+REQUIRED_CASES = {"zero pieces", "one piece", "two pieces"}
 
 
 def command_environment() -> dict[str, str]:
@@ -52,10 +54,15 @@ def resolve_declared_files(config: dict[str, Any], exercise_root: Path) -> dict[
         for entry in entries:
             if not isinstance(entry, str) or not entry:
                 raise MetadataError(f"files.{category} entries must be non-empty paths")
-            relative_path = Path(entry)
-            if relative_path.is_absolute():
+            relative_path = PurePosixPath(entry)
+            if (
+                relative_path.is_absolute()
+                or "\\" in entry
+                or ".." in relative_path.parts
+                or (relative_path.parts and relative_path.parts[0].endswith(":"))
+            ):
                 raise MetadataError(f"Path is outside exercise: {entry}")
-            candidate = (root / relative_path).resolve()
+            candidate = (root / Path(*relative_path.parts)).resolve()
             try:
                 candidate.relative_to(root)
             except ValueError as error:
@@ -141,20 +148,42 @@ def get_version(command: list[str]) -> str:
     return output[0] if output else f"exit {result.returncode}"
 
 
-def run_reference_tests(files: dict[str, list[Path]]) -> dict[str, Any]:
-    solution = files["solution"][0]
+def run_reference_tests(
+    files: dict[str, list[Path]], *, force_zero_tests: bool = False
+) -> dict[str, Any]:
+    solutions = files["solution"]
+    solution = solutions[0]
     test_file = files["test"][0]
     reference_files = files.get("example") or files.get("exemplar")
     reference = reference_files[0]
     test_text = test_file.read_text(encoding="utf-8")
-    expected_cases = len(re.findall(r"^\s*@test\s+", test_text, flags=re.MULTILINE))
-    stub_hash_before = hashlib.sha256(solution.read_bytes()).hexdigest()
+    expected_test_names = re.findall(
+        r"""(?m)^\s*@test\s+(["'])(.*?)\1\s*\{""", test_text
+    )
+    expected_test_names = [name for _, name in expected_test_names]
+    expected_cases = len(expected_test_names)
+    stub_hashes_before = {
+        path.relative_to(EXERCISE).as_posix(): hashlib.sha256(
+            path.read_bytes()
+        ).hexdigest()
+        for path in solutions
+    }
 
     with tempfile.TemporaryDirectory(prefix="proverb-validation-") as temporary:
         temporary_root = Path(temporary)
         copied_exercise = temporary_root / "exercises/practice/proverb"
         shutil.copytree(EXERCISE, copied_exercise)
         shutil.copy2(reference, copied_exercise / solution.relative_to(EXERCISE))
+        if force_zero_tests:
+            copied_test = copied_exercise / test_file.relative_to(EXERCISE)
+            copied_test.write_text(
+                re.sub(
+                    r"(?m)^(@test\b[^\n]*\{\s*)$",
+                    r'\1\n    skip "forced zero-test validation"',
+                    copied_test.read_text(encoding="utf-8"),
+                ),
+                encoding="utf-8",
+            )
         bin_directory = temporary_root / "bin"
         bin_directory.mkdir()
         (bin_directory / "validate_one_exercise").symlink_to(VALIDATOR)
@@ -170,30 +199,59 @@ def run_reference_tests(files: dict[str, list[Path]]) -> dict[str, Any]:
 
     output = completed.stdout + completed.stderr
     plan_match = re.search(r"(?m)^1\.\.(\d+)\s*$", output)
-    executed_count = len(re.findall(r"(?m)^ok\s+\d+\b", output))
-    has_skips = bool(re.search(r"(?m)^ok\s+\d+\b.*#\s*skip", output))
-    stub_hash_after = hashlib.sha256(solution.read_bytes()).hexdigest()
+    result_lines = re.findall(
+        r"(?mi)^(ok|not ok)\s+\d+\s*(.*)$", output
+    )
+    skipped_lines = [
+        (status, details)
+        for status, details in result_lines
+        if re.search(r"#\s*skip(?:\s|$)", details, flags=re.IGNORECASE)
+    ]
+    executed_count = len(result_lines) - len(skipped_lines)
+    test_names = [
+        re.sub(r"\s+#.*$", "", details).strip()
+        for _, details in result_lines
+    ]
+    required_cases_present = REQUIRED_CASES.issubset(expected_test_names)
+    failed_count = sum(status.lower() == "not ok" for status, _ in result_lines)
+    stub_hashes_after = {
+        path.relative_to(EXERCISE).as_posix(): hashlib.sha256(
+            path.read_bytes()
+        ).hexdigest()
+        for path in solutions
+    }
     checks = {
         "return_code_is_zero": completed.returncode == 0,
         "planned_case_count_matches": bool(plan_match and int(plan_match.group(1)) == expected_cases),
+        "result_count_matches": len(result_lines) == expected_cases,
         "executed_case_count_matches": executed_count == expected_cases,
-        "no_cases_skipped": not has_skips,
-        "learner_stub_unchanged": stub_hash_before == stub_hash_after,
+        "nonzero_test_count": executed_count > 0,
+        "no_cases_skipped": not skipped_lines,
+        "no_assertion_failures": failed_count == 0,
+        "test_names_match": test_names == expected_test_names,
+        "required_cases_present": required_cases_present,
+        "learner_stub_unchanged": stub_hashes_before == stub_hashes_after,
     }
     return {
         "command": ["bin/validate_one_exercise", "exercises/practice/proverb"],
         "expected_case_count": expected_cases,
         "executed_case_count": executed_count,
+        "skipped_case_count": len(skipped_lines),
+        "assertion_failure_count": failed_count,
         "return_code": completed.returncode,
         "stdout": completed.stdout,
         "stderr": completed.stderr,
-        "learner_stub_sha256_before": stub_hash_before,
-        "learner_stub_sha256_after": stub_hash_after,
+        "learner_stub_sha256_before": stub_hashes_before,
+        "learner_stub_sha256_after": stub_hashes_after,
+        "test_names": test_names,
         "checks": checks,
         "passed": all(checks.values()),
+        "forced_zero_tests": force_zero_tests,
         "reference_path": reference.relative_to(ROOT).as_posix(),
         "test_path": test_file.relative_to(ROOT).as_posix(),
-        "solution_path": solution.relative_to(ROOT).as_posix(),
+        "solution_paths": [
+            path.relative_to(ROOT).as_posix() for path in solutions
+        ],
     }
 
 
@@ -228,6 +286,27 @@ def main() -> int:
             failures.append("reference tests failed: " + ", ".join(
                 name for name, passed in runner["checks"].items() if not passed
             ))
+        zero_test_run = run_reference_tests(files, force_zero_tests=True)
+        zero_test_guard_passed = (
+            zero_test_run["executed_case_count"] == 0
+            and zero_test_run["skipped_case_count"] == runner["expected_case_count"]
+            and not zero_test_run["passed"]
+            and zero_test_run["checks"]["nonzero_test_count"] is False
+        )
+        evidence["expected_vs_actual"]["zero_test_guard"] = {
+            "expected": "checker rejects a validator run with zero executed cases",
+            "actual": {
+                "checker_passed": zero_test_run["passed"],
+                "validator_return_code": zero_test_run["return_code"],
+                "planned_case_count": zero_test_run["expected_case_count"],
+                "executed_case_count": zero_test_run["executed_case_count"],
+                "skipped_case_count": zero_test_run["skipped_case_count"],
+                "checks": zero_test_run["checks"],
+            },
+            "passed": zero_test_guard_passed,
+        }
+        if not zero_test_guard_passed:
+            failures.append("zero-test run was not rejected")
     except MetadataError as error:
         evidence["expected_vs_actual"]["real_metadata"] = {
             "expected": "all declared files resolve within the exercise directory",
@@ -252,6 +331,7 @@ def main() -> int:
     runner = evidence["expected_vs_actual"]["reference_tests"]
     print(f"PASS: {runner['executed_case_count']} reference cases executed")
     print("PASS: real metadata and all three invalid fixtures")
+    print("PASS: zero-test run rejected")
     print("PASS: learner stub unchanged")
     return 0
 
