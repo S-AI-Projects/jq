@@ -10,3 +10,7 @@ Lowercase and uppercase characters are equivalent: for example, `"PoTS"` is an a
 The words you need to find should be taken from the candidate words, using the same letter case.
 
 Given the target `"stone"` and the candidate words `"stone"`, `"tones"`, `"banana"`, `"tons"`, `"notes"`, and `"Seton"`, the anagram words you need to find are `"tones"`, `"notes"`, and `"Seton"`.
+
+### Debugging hint
+
+An anagram must be a different word as well as a rearrangement: the target itself is never a match, even when candidate and target differ only in letter case. To check this boundary, try target `"a"` with candidate `"a"`; the result should be an empty list. The existing self-match cases exercise this rule.
