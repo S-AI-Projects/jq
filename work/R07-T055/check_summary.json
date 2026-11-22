@@ -1,0 +1,55 @@
+{
+  "task_id": "R07-T055",
+  "exercise": "rna-transcription",
+  "tool_versions": {
+    "python": "3.15.2",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "validation_results": {
+    "returncode": 0,
+    "tests_planned": 6,
+    "tests_passed": 6,
+    "tests_failed": 0,
+    "anchor_cases_verified": [
+      "Empty RNA sequence",
+      "RNA complement of cytosine is guanine",
+      "RNA complement of guanine is cytosine"
+    ]
+  },
+  "scaling_measurements": {
+    "10": {
+      "size": 10,
+      "avg_ms": 2.893,
+      "output_length": 10
+    },
+    "100": {
+      "size": 100,
+      "avg_ms": 2.789,
+      "output_length": 100
+    },
+    "1000": {
+      "size": 1000,
+      "avg_ms": 3.529,
+      "output_length": 1000
+    },
+    "10000": {
+      "size": 10000,
+      "avg_ms": 10.043,
+      "output_length": 10000
+    },
+    "100000": {
+      "size": 100000,
+      "avg_ms": 154.561,
+      "output_length": 100000
+    }
+  },
+  "complexity": {
+    "time_complexity": "O(N)",
+    "space_complexity": "O(N)",
+    "model": "Linear string split, table lookup, and string reassembly"
+  },
+  "learner_stub_unsolved": true
+}
