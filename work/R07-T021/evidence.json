@@ -1,0 +1,255 @@
+{
+  "tool_versions": {
+    "python": "3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  },
+  "metadata": {
+    "input_path": "exercises/practice/square-root/.meta/tests.toml",
+    "included_excluded_before": {
+      "included": 6,
+      "excluded": 0
+    },
+    "included_excluded_after": {
+      "included": 6,
+      "excluded": 0
+    },
+    "include_states_unchanged": true,
+    "toml_record_count": 6,
+    "metadata_description_to_uuid": {
+      "root of 1": "9b748478-7b0a-490c-b87a-609dacf631fd",
+      "root of 4": "7d3aa9ba-9ac6-4e93-a18b-2e8b477139bb",
+      "root of 25": "6624aabf-3659-4ae0-a1c8-25ae7f33c6ef",
+      "root of 81": "93beac69-265e-4429-abb1-94506b431f81",
+      "root of 196": "fbddfeda-8c4f-4bc4-87ca-6991af35360e",
+      "root of 65025": "c03d0532-8368-4734-a8e0-f96a9eb7fc1d"
+    },
+    "toml_parser": "pip._vendor.tomli",
+    "toml_parse_passed": true
+  },
+  "selected_cases": [
+    {
+      "uuid": "9b748478-7b0a-490c-b87a-609dacf631fd",
+      "test_name": "root of 1",
+      "input": {
+        "radicand": 1
+      },
+      "expected": "1",
+      "actual": "1",
+      "passed": true
+    },
+    {
+      "uuid": "7d3aa9ba-9ac6-4e93-a18b-2e8b477139bb",
+      "test_name": "root of 4",
+      "input": {
+        "radicand": 4
+      },
+      "expected": "2",
+      "actual": "2",
+      "passed": true
+    },
+    {
+      "uuid": "6624aabf-3659-4ae0-a1c8-25ae7f33c6ef",
+      "test_name": "root of 25",
+      "input": {
+        "radicand": 25
+      },
+      "expected": "5",
+      "actual": "5",
+      "passed": true
+    }
+  ],
+  "reference_tests": [
+    {
+      "name": "root of 1",
+      "input": {
+        "radicand": 1
+      },
+      "expected": "1",
+      "actual": "1",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "root of 4",
+      "input": {
+        "radicand": 4
+      },
+      "expected": "2",
+      "actual": "2",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "root of 25",
+      "input": {
+        "radicand": 25
+      },
+      "expected": "5",
+      "actual": "5",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "root of 81",
+      "input": {
+        "radicand": 81
+      },
+      "expected": "9",
+      "actual": "9",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "root of 196",
+      "input": {
+        "radicand": 196
+      },
+      "expected": "14",
+      "actual": "14",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "root of 65025",
+      "input": {
+        "radicand": 65025
+      },
+      "expected": "255",
+      "actual": "255",
+      "return_code": 0,
+      "stderr": "",
+      "passed": true
+    }
+  ],
+  "validator": {
+    "command": [
+      "bin/validate_one_exercise",
+      "exercises/practice/square-root"
+    ],
+    "return_code": 0,
+    "planned_test_count": 6,
+    "reported_test_count": 6,
+    "executed_test_count": 6,
+    "skipped_test_count": 0,
+    "assertion_failure_count": 0,
+    "test_names": [
+      "root of 1",
+      "root of 4",
+      "root of 25",
+      "root of 81",
+      "root of 196",
+      "root of 65025"
+    ],
+    "stdout": "Processing square-root\n1..6\nok 1 root of 1\nok 2 root of 4\nok 3 root of 25\nok 4 root of 81\nok 5 root of 196\nok 6 root of 65025\n",
+    "stderr": "",
+    "checks": {
+      "child_return_code_zero": true,
+      "single_tap_plan": true,
+      "plan_matches_results": true,
+      "reported_test_count_matches": true,
+      "nonzero_test_count": true,
+      "all_tests_executed": true,
+      "no_skips": true,
+      "no_assertion_failures": true,
+      "test_names_match": true
+    },
+    "passed": true,
+    "temporary_files_cleaned": true
+  },
+  "learner_solution_hashes": {
+    "before": {
+      "exercises/practice/square-root/square-root.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+    },
+    "after": {
+      "exercises/practice/square-root/square-root.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+    },
+    "unchanged": true
+  },
+  "failures": [],
+  "zero_test_guard": {
+    "expected": "reject a run with zero executed tests",
+    "actual": {
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/square-root"
+      ],
+      "return_code": 0,
+      "planned_test_count": 6,
+      "reported_test_count": 6,
+      "executed_test_count": 0,
+      "skipped_test_count": 6,
+      "assertion_failure_count": 0,
+      "test_names": [
+        "root of 1",
+        "root of 4",
+        "root of 25",
+        "root of 81",
+        "root of 196",
+        "root of 65025"
+      ],
+      "stdout": "Processing square-root\n1..6\nok 1 root of 1 # skip forced zero-test guard\nok 2 root of 4 # skip forced zero-test guard\nok 3 root of 25 # skip forced zero-test guard\nok 4 root of 81 # skip forced zero-test guard\nok 5 root of 196 # skip forced zero-test guard\nok 6 root of 65025 # skip forced zero-test guard\n",
+      "stderr": "",
+      "checks": {
+        "child_return_code_zero": true,
+        "single_tap_plan": true,
+        "plan_matches_results": true,
+        "reported_test_count_matches": true,
+        "nonzero_test_count": false,
+        "all_tests_executed": false,
+        "no_skips": false,
+        "no_assertion_failures": true,
+        "test_names_match": true
+      },
+      "passed": false,
+      "temporary_files_cleaned": true
+    },
+    "rejected": true
+  },
+  "assertion_failure_guard": {
+    "expected": "reject a nonzero validator exit with assertion failures",
+    "actual": {
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/square-root"
+      ],
+      "return_code": 1,
+      "planned_test_count": 6,
+      "reported_test_count": 6,
+      "executed_test_count": 6,
+      "skipped_test_count": 0,
+      "assertion_failure_count": 6,
+      "test_names": [
+        "root of 1",
+        "root of 4",
+        "root of 25",
+        "root of 81",
+        "root of 196",
+        "root of 65025"
+      ],
+      "stdout": "Processing square-root\n1..6\nnot ok 1 root of 1\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-square-root.bats, line 15)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate reference failure\n# --\n#\nnot ok 2 root of 4\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-square-root.bats, line 29)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate reference failure\n# --\n#\nnot ok 3 root of 25\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-square-root.bats, line 43)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate reference failure\n# --\n#\nnot ok 4 root of 81\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-square-root.bats, line 57)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate reference failure\n# --\n#\nnot ok 5 root of 196\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-square-root.bats, line 71)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate reference failure\n# --\n#\nnot ok 6 root of 65025\n# (from function `assert_success' in file bats-extra.bash, line 409,\n#  in test file test-square-root.bats, line 85)\n#   `assert_success' failed\n#\n# -- command failed --\n# status : 5\n# output : jq: error (at <stdin>:3): deliberate reference failure\n# --\n#\n",
+      "stderr": "",
+      "checks": {
+        "child_return_code_zero": false,
+        "single_tap_plan": true,
+        "plan_matches_results": true,
+        "reported_test_count_matches": true,
+        "nonzero_test_count": true,
+        "all_tests_executed": true,
+        "no_skips": true,
+        "no_assertion_failures": false,
+        "test_names_match": true
+      },
+      "passed": false,
+      "temporary_files_cleaned": true
+    },
+    "rejected": true
+  },
+  "passed": true
+}
