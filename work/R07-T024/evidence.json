@@ -1,0 +1,172 @@
+{
+  "exercise": "exercises/practice/resistor-color",
+  "tool_versions": {
+    "python": "3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  },
+  "inputs": {
+    "cases": [
+      {
+        "name": "Color codes:Black",
+        "input": {
+          "property": "colorCode",
+          "input": {
+            "color": "black"
+          }
+        },
+        "expected": "0"
+      },
+      {
+        "name": "Color codes:White",
+        "input": {
+          "property": "colorCode",
+          "input": {
+            "color": "white"
+          }
+        },
+        "expected": "9"
+      },
+      {
+        "name": "Color codes:Orange",
+        "input": {
+          "property": "colorCode",
+          "input": {
+            "color": "orange"
+          }
+        },
+        "expected": "3"
+      },
+      {
+        "name": "Colors",
+        "input": {
+          "property": "colors",
+          "input": {}
+        },
+        "expected": "[\"black\",\"brown\",\"red\",\"orange\",\"yellow\",\"green\",\"blue\",\"violet\",\"grey\",\"white\"]"
+      }
+    ],
+    "baseline_reference_commit": "10f8e377abe866f59c784599598e649514040b3c",
+    "solution_paths": [
+      "exercises/practice/resistor-color/resistor-color.jq"
+    ],
+    "test_path": "exercises/practice/resistor-color/test-resistor-color.bats",
+    "example_path": "exercises/practice/resistor-color/.meta/example.jq"
+  },
+  "before_after_cases": {
+    "results": [
+      {
+        "name": "Color codes:Black",
+        "input": {
+          "property": "colorCode",
+          "input": {
+            "color": "black"
+          }
+        },
+        "expected": "0",
+        "before": "0",
+        "after": "0",
+        "outputs_equal": true,
+        "before_passed": true,
+        "after_passed": true,
+        "return_codes": {
+          "before": 0,
+          "after": 0
+        }
+      },
+      {
+        "name": "Color codes:White",
+        "input": {
+          "property": "colorCode",
+          "input": {
+            "color": "white"
+          }
+        },
+        "expected": "9",
+        "before": "9",
+        "after": "9",
+        "outputs_equal": true,
+        "before_passed": true,
+        "after_passed": true,
+        "return_codes": {
+          "before": 0,
+          "after": 0
+        }
+      },
+      {
+        "name": "Color codes:Orange",
+        "input": {
+          "property": "colorCode",
+          "input": {
+            "color": "orange"
+          }
+        },
+        "expected": "3",
+        "before": "3",
+        "after": "3",
+        "outputs_equal": true,
+        "before_passed": true,
+        "after_passed": true,
+        "return_codes": {
+          "before": 0,
+          "after": 0
+        }
+      },
+      {
+        "name": "Colors",
+        "input": {
+          "property": "colors",
+          "input": {}
+        },
+        "expected": "[\"black\",\"brown\",\"red\",\"orange\",\"yellow\",\"green\",\"blue\",\"violet\",\"grey\",\"white\"]",
+        "before": "[\"black\",\"brown\",\"red\",\"orange\",\"yellow\",\"green\",\"blue\",\"violet\",\"grey\",\"white\"]",
+        "after": "[\"black\",\"brown\",\"red\",\"orange\",\"yellow\",\"green\",\"blue\",\"violet\",\"grey\",\"white\"]",
+        "outputs_equal": true,
+        "before_passed": true,
+        "after_passed": true,
+        "return_codes": {
+          "before": 0,
+          "after": 0
+        }
+      }
+    ],
+    "passed": true
+  },
+  "validator": {
+    "command": [
+      "bin/validate_one_exercise",
+      "exercises/practice/resistor-color"
+    ],
+    "return_code": 0,
+    "planned_test_count": 4,
+    "reported_test_count": 4,
+    "executed_test_count": 4,
+    "skipped_test_count": 0,
+    "assertion_failure_count": 0,
+    "stdout": "Processing resistor-color\n1..4\nok 1 Color codes:Black\nok 2 Color codes:White\nok 3 Color codes:Orange\nok 4 Colors\n",
+    "stderr": "",
+    "checks": {
+      "child_return_code_zero": true,
+      "one_tap_plan": true,
+      "plan_matches_reported_tests": true,
+      "reported_test_count_matches": true,
+      "nonzero_executed_count": true,
+      "all_cases_executed": true,
+      "no_skips": true,
+      "no_assertion_failures": true
+    },
+    "passed": true
+  },
+  "learner_solution_hashes": {
+    "before": {
+      "exercises/practice/resistor-color/resistor-color.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+    },
+    "after": {
+      "exercises/practice/resistor-color/resistor-color.jq": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82"
+    },
+    "unchanged": true
+  },
+  "passed": true,
+  "failures": []
+}
