@@ -1,0 +1,16 @@
+{
+  "passed_tests": [
+    "ok 1 no columns",
+    "ok 2 no flowers",
+    "ok 3 garden full of flowers",
+    "ok 4 flower surrounded by spaces",
+    "ok 5 space surrounded by flowers",
+    "ok 6 horizontal line",
+    "ok 7 horizontal line, flowers at edges",
+    "ok 8 vertical line",
+    "ok 9 vertical line, flowers at edges",
+    "ok 10 cross",
+    "ok 11 large garden",
+    "ok 12 multiple adjacent flowers"
+  ]
+}
