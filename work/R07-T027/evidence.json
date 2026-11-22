@@ -1,0 +1,181 @@
+{
+  "inputs": {
+    "real_config": {
+      "authors": [
+        "glennj"
+      ],
+      "files": {
+        "solution": [
+          "leap.jq"
+        ],
+        "test": [
+          "test-leap.bats"
+        ],
+        "example": [
+          ".meta/example.jq"
+        ],
+        "invalidator": [
+          "bats-extra.bash",
+          "bats-jq.bash"
+        ]
+      },
+      "blurb": "Determine whether a given year is a leap year.",
+      "source": "CodeRanch Cattle Drive, Assignment 3",
+      "source_url": "https://web.archive.org/web/20240907033714/https://coderanch.com/t/718816/Leap"
+    }
+  },
+  "expected_vs_actual": {
+    "real_metadata": {
+      "expected": "all declared files resolve inside the exercise directory",
+      "actual": {
+        "solution": [
+          "exercises/practice/leap/leap.jq"
+        ],
+        "test": [
+          "exercises/practice/leap/test-leap.bats"
+        ],
+        "example": [
+          "exercises/practice/leap/.meta/example.jq"
+        ],
+        "invalidator": [
+          "exercises/practice/leap/bats-extra.bash",
+          "exercises/practice/leap/bats-jq.bash"
+        ]
+      },
+      "passed": true
+    },
+    "reference_tests": {
+      "command": [
+        "bin/validate_one_exercise",
+        "exercises/practice/leap"
+      ],
+      "suite_test_count": 9,
+      "planned_test_count": 9,
+      "executed_test_count": 9,
+      "skipped_test_count": 0,
+      "return_code": 0,
+      "stdout": "Processing leap\n1..9\nok 1 year not divisible by 4 in common year\nok 2 year divisible by 2, not divisible by 4 in common year\nok 3 year divisible by 4, not divisible by 100 in leap year\nok 4 year divisible by 4 and 5 is still a leap year\nok 5 year divisible by 100, not divisible by 400 in common year\nok 6 year divisible by 100 but not by 3 is still not a leap year\nok 7 year divisible by 400 is leap year\nok 8 year divisible by 400 but not by 125 is still a leap year\nok 9 year divisible by 200, not divisible by 400 in common year\n",
+      "stderr": "",
+      "learner_stub_sha256_before": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+      "learner_stub_sha256_after": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+      "checks": {
+        "child_return_code_zero": true,
+        "test_plan_nonzero": true,
+        "test_count_matches_plan": true,
+        "test_count_matches_suite": true,
+        "no_skipped_cases": true,
+        "learner_stub_unchanged": true
+      },
+      "passed": true,
+      "reference_path": "exercises/practice/leap/.meta/example.jq",
+      "test_path": "exercises/practice/leap/test-leap.bats",
+      "solution_path": "exercises/practice/leap/leap.jq"
+    },
+    "micro_examples": {
+      "cases": [
+        {
+          "name": "null field defaults with //",
+          "expression": "(if (.year // 0) == 0 then \"missing\" else (.year // 0 | tostring) end)",
+          "input": "{\"year\":null}",
+          "expected": "missing",
+          "actual": "missing",
+          "return_code": 0,
+          "passed": true
+        },
+        {
+          "name": "false field defaults with //",
+          "expression": "(if (.year // 0) == 0 then \"missing\" else (.year // 0 | tostring) end)",
+          "input": "{\"year\":false}",
+          "expected": "missing",
+          "actual": "missing",
+          "return_code": 0,
+          "passed": true
+        },
+        {
+          "name": "reference leap expression",
+          "expression": "(.year // 0) as $year | $year % 4 == 0 and $year % 100 != 0 or $year % 400 == 0",
+          "input": "{\"year\":1996}",
+          "expected": "true",
+          "actual": "true",
+          "return_code": 0,
+          "passed": true
+        },
+        {
+          "name": "false and null are both fallbacks",
+          "expression": "(false // 0), (null // 0)",
+          "input": "null",
+          "expected": "0\n0",
+          "actual": "0\n0",
+          "return_code": 0,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    "invalid_metadata_fixtures": [
+      {
+        "name": "missing-reference",
+        "input": {
+          "files": {
+            "solution": [
+              "solution.jq"
+            ],
+            "test": [
+              "test.bats"
+            ],
+            "example": [
+              ".meta/missing.jq"
+            ]
+          }
+        },
+        "expected": "Missing file: .meta/missing.jq",
+        "actual": "Missing file: .meta/missing.jq",
+        "passed": true
+      },
+      {
+        "name": "missing-test",
+        "input": {
+          "files": {
+            "solution": [
+              "solution.jq"
+            ],
+            "test": [
+              "missing-test.bats"
+            ],
+            "example": [
+              ".meta/example.jq"
+            ]
+          }
+        },
+        "expected": "Missing file: missing-test.bats",
+        "actual": "Missing file: missing-test.bats",
+        "passed": true
+      },
+      {
+        "name": "outside-exercise",
+        "input": {
+          "files": {
+            "solution": [
+              "solution.jq"
+            ],
+            "test": [
+              "test.bats"
+            ],
+            "example": [
+              "../outside.jq"
+            ]
+          }
+        },
+        "expected": "Path is outside exercise: ../outside.jq",
+        "actual": "Path is outside exercise: ../outside.jq",
+        "passed": true
+      }
+    ]
+  },
+  "tool_versions": {
+    "python": "Python 3.9.6",
+    "jq": "jq-1.7.1-apple",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+  }
+}
