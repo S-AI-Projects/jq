@@ -1,0 +1,52 @@
+{
+  "passed_tests": [
+    "ok 1 verse:single verse:first generic verse",
+    "ok 2 verse:single verse:last generic verse",
+    "ok 3 verse:single verse:verse with 2 bottles",
+    "ok 4 verse:single verse:verse with 1 bottle",
+    "ok 5 lyrics:multiple verses:first two verses",
+    "ok 6 lyrics:multiple verses:last three verses",
+    "ok 7 lyrics:multiple verses:all verses"
+  ],
+  "comparisons": {
+    "first generic verse": {
+      "input": {
+        "startBottles": 10,
+        "takeDown": 1
+      },
+      "output_lines_count": 4,
+      "output": [
+        "Ten green bottles hanging on the wall,",
+        "Ten green bottles hanging on the wall,",
+        "And if one green bottle should accidentally fall,",
+        "There'll be nine green bottles hanging on the wall."
+      ]
+    },
+    "last generic verse": {
+      "input": {
+        "startBottles": 3,
+        "takeDown": 1
+      },
+      "output_lines_count": 4,
+      "output": [
+        "Three green bottles hanging on the wall,",
+        "Three green bottles hanging on the wall,",
+        "And if one green bottle should accidentally fall,",
+        "There'll be two green bottles hanging on the wall."
+      ]
+    },
+    "verse with 2 bottles": {
+      "input": {
+        "startBottles": 2,
+        "takeDown": 1
+      },
+      "output_lines_count": 4,
+      "output": [
+        "Two green bottles hanging on the wall,",
+        "Two green bottles hanging on the wall,",
+        "And if one green bottle should accidentally fall,",
+        "There'll be one green bottle hanging on the wall."
+      ]
+    }
+  }
+}

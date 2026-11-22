@@ -1,0 +1,27 @@
+{
+  "task_id": "R07-T056",
+  "exercise": "bottle-song",
+  "tool_versions": {
+    "python": "3.15.2",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "validation_results": {
+    "returncode": 0,
+    "tests_planned": 7,
+    "tests_passed": 7,
+    "tests_failed": 0
+  },
+  "approach_comparison": {
+    "approach_a": "Array-indexed number words + functional interpolation",
+    "approach_b": "Modular single-verse constructor with reduce join",
+    "anchor_cases_verified": [
+      "first generic verse",
+      "last generic verse",
+      "verse with 2 bottles"
+    ]
+  },
+  "learner_stub_unsolved": true
+}
