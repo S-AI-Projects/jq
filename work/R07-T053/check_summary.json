@@ -1,0 +1,24 @@
+{
+  "task_id": "R07-T053",
+  "exercise": "protein-translation",
+  "tool_versions": {
+    "python": "3.15.2",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "reference_validation": {
+    "returncode": 0,
+    "tests_passed": 31,
+    "tests_failed": 0
+  },
+  "mutant_validation": {
+    "returncode": 1,
+    "tests_passed": 30,
+    "tests_failed": 1,
+    "rejecting_test_id": "9d73899f-e68e-4291-b1e2-7bf87c00f024",
+    "rejecting_test_name": "Incomplete RNA sequence can't translate"
+  },
+  "learner_stub_unsolved": true
+}
