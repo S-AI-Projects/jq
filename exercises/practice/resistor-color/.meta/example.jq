@@ -9,9 +9,9 @@
     violet:  7,
     grey:    8,
     white:   9
-} as $colors |
+} as $color_codes |
 
-if .property == "colorCode" then $colors[.input.color]
-elif .property == "colors" then $colors | keys | sort_by($colors[.])
+if .property == "colorCode" then $color_codes[.input.color]
+elif .property == "colors" then $color_codes | keys | sort_by($color_codes[.])
 else empty
 end
