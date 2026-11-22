@@ -1,0 +1,153 @@
+{
+  "checked_at_utc": "2026-11-22T16:22:41.016791+00:00",
+  "environment": {
+    "platform": "macOS-27.2.1-arm64-arm-64bit",
+    "python": "3.9.6",
+    "timing_clock": "time.perf_counter_ns",
+    "timing_repetitions_per_size": 5,
+    "timing_scope": "Wall time for each jq subprocess invocation, including process startup and filter parsing; no separate compilation step.",
+    "tool_versions": {
+      "jq": "jq-1.7.1-apple",
+      "bats": "Bats 1.14.0",
+      "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin27.0.0)"
+    }
+  },
+  "validation": {
+    "test_file": "exercises/practice/isogram/test-isogram.bats",
+    "expected_test_names": [
+      "empty string",
+      "isogram with only lower case characters",
+      "word with one duplicated character",
+      "word with one duplicated character from the end of the alphabet",
+      "longest reported english isogram",
+      "word with duplicated character in mixed case",
+      "word with duplicated character in mixed case, lowercase first",
+      "hypothetical isogrammic word with hyphen",
+      "hypothetical word with duplicated character following hyphen",
+      "isogram with duplicated hyphen",
+      "made-up name that is an isogram",
+      "duplicated character in the middle",
+      "same first and last characters",
+      "word with duplicated character and with two hyphens"
+    ],
+    "expected_case_count": 14,
+    "command": [
+      "bin/validate_one_exercise",
+      "exercises/practice/isogram"
+    ],
+    "returncode": 0,
+    "tap_plans": [
+      14
+    ],
+    "executed_count": 14,
+    "passed_names": [
+      "empty string",
+      "isogram with only lower case characters",
+      "word with one duplicated character",
+      "word with one duplicated character from the end of the alphabet",
+      "longest reported english isogram",
+      "word with duplicated character in mixed case",
+      "word with duplicated character in mixed case, lowercase first",
+      "hypothetical isogrammic word with hyphen",
+      "hypothetical word with duplicated character following hyphen",
+      "isogram with duplicated hyphen",
+      "made-up name that is an isogram",
+      "duplicated character in the middle",
+      "same first and last characters",
+      "word with duplicated character and with two hyphens"
+    ],
+    "failed_lines": [],
+    "stdout": "Processing isogram\n1..14\nok 1 empty string\nok 2 isogram with only lower case characters\nok 3 word with one duplicated character\nok 4 word with one duplicated character from the end of the alphabet\nok 5 longest reported english isogram\nok 6 word with duplicated character in mixed case\nok 7 word with duplicated character in mixed case, lowercase first\nok 8 hypothetical isogrammic word with hyphen\nok 9 hypothetical word with duplicated character following hyphen\nok 10 isogram with duplicated hyphen\nok 11 made-up name that is an isogram\nok 12 duplicated character in the middle\nok 13 same first and last characters\nok 14 word with duplicated character and with two hyphens\n",
+    "stderr": ""
+  },
+  "benchmarks": [
+    {
+      "input_symbols": 16,
+      "input": {
+        "phrase": "abcdefghijklmnop"
+      },
+      "expected": true,
+      "correctness_actual": "true",
+      "correctness_passed": true,
+      "timed_actual_outputs": [
+        "true",
+        "true",
+        "true",
+        "true",
+        "true"
+      ],
+      "repetitions": 5,
+      "elapsed_milliseconds": [
+        2.564834,
+        2.775708,
+        2.52425,
+        2.466708,
+        2.365958
+      ],
+      "median_elapsed_milliseconds": 2.52425,
+      "includes_process_startup": true,
+      "algorithm_only_timing": false
+    },
+    {
+      "input_symbols": 256,
+      "input": {
+        "phrase": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv"
+      },
+      "expected": false,
+      "correctness_actual": "false",
+      "correctness_passed": true,
+      "timed_actual_outputs": [
+        "false",
+        "false",
+        "false",
+        "false",
+        "false"
+      ],
+      "repetitions": 5,
+      "elapsed_milliseconds": [
+        2.714541,
+        2.793542,
+        2.789583,
+        2.587,
+        2.59
+      ],
+      "median_elapsed_milliseconds": 2.714541,
+      "includes_process_startup": true,
+      "algorithm_only_timing": false
+    },
+    {
+      "input_symbols": 4096,
+      "input": {
+        "phrase": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmn"
+      },
+      "expected": false,
+      "correctness_actual": "false",
+      "correctness_passed": true,
+      "timed_actual_outputs": [
+        "false",
+        "false",
+        "false",
+        "false",
+        "false"
+      ],
+      "repetitions": 5,
+      "elapsed_milliseconds": [
+        7.842,
+        7.523375,
+        7.810833,
+        7.635,
+        7.593834
+      ],
+      "median_elapsed_milliseconds": 7.635,
+      "includes_process_startup": true,
+      "algorithm_only_timing": false
+    }
+  ],
+  "failures": [],
+  "learner_solution": {
+    "path": "exercises/practice/isogram/isogram.jq",
+    "sha256_before": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+    "sha256_after": "f8200a1bca5047e466c2d01aafa48aae819243453000300dfaad5d7d9d2f0b82",
+    "unchanged": true
+  }
+}
