@@ -1,0 +1,33 @@
+{
+  "passed_tests": [
+    "Yacht",
+    "Not Yacht",
+    "Ones",
+    "Ones, out of order",
+    "No ones",
+    "Twos",
+    "Fours",
+    "Yacht counted as threes",
+    "Yacht of 3s counted as fives",
+    " Fives",
+    " Sixes",
+    " Full house two small, three big",
+    " Full house three small, two big",
+    " Two pair is not a full house",
+    " Four of a kind is not a full house",
+    " Yacht is not a full house",
+    " Four of a Kind",
+    " Yacht can be scored as Four of a Kind",
+    " Full house is not Four of a Kind",
+    " Little Straight",
+    " Little Straight as Big Straight",
+    " Four in order but not a little straight",
+    " No pairs but not a little straight",
+    " Minimum is 1, maximum is 5, but not a little straight",
+    " Big Straight",
+    " Big Straight as little straight",
+    " No pairs but not a big straight",
+    " Choice",
+    " Yacht as choice"
+  ]
+}
