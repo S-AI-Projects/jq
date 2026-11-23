@@ -1,0 +1,30 @@
+{
+  "task_id": "R07-T041",
+  "exercise": "matching-brackets",
+  "tool_versions": {
+    "python": "3.14.6",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "selected_uuids": [
+    "81ec11da-38dd-442a-bcf9-3de7754609a5",
+    "287f0167-ac60-4b64-8452-a0aa8f4e5238",
+    "6c3615a3-df01-4130-a731-8ef5f5d78dac"
+  ],
+  "anchor_cases": [
+    "paired square brackets",
+    "empty string",
+    "unpaired brackets"
+  ],
+  "canonical_counts": {
+    "included": 20,
+    "excluded": 0
+  },
+  "tests_executed": 20,
+  "tests_passed": 20,
+  "tests_failed": 0,
+  "return_code": 0,
+  "learner_stub_unsolved": true
+}
