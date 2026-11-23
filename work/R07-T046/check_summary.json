@@ -1,0 +1,23 @@
+{
+  "task_id": "R07-T046",
+  "exercise": "scrabble-score",
+  "tool_versions": {
+    "python": "3.14.6",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "anchor_cases": [
+    "lowercase letter",
+    "uppercase letter",
+    "valuable letter"
+  ],
+  "approach_a": "ASCII direct array indexing (example.jq)",
+  "approach_b": "Object dictionary lookup (alternative)",
+  "tests_executed": 11,
+  "tests_passed": 11,
+  "parity_verified": true,
+  "learner_stub_unsolved": true,
+  "return_code": 0
+}
