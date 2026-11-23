@@ -1,0 +1,13 @@
+{
+  "passed_tests": [
+    "Square the sum of the numbers up to the given number:square of sum 1",
+    "Square the sum of the numbers up to the given number:square of sum 5",
+    "Square the sum of the numbers up to the given number:square of sum 100",
+    "Sum the squares of the numbers up to the given number:sum of squares 1",
+    "Sum the squares of the numbers up to the given number:sum of squares 5",
+    "Sum the squares of the numbers up to the given number:sum of squares 100",
+    "Subtract sum of squares from square of sums:difference of squares 1",
+    "Subtract sum of squares from square of sums:difference of squares 5",
+    "Subtract sum of squares from square of sums:difference of squares 100"
+  ]
+}
