@@ -1,0 +1,21 @@
+{
+  "task_id": "R07-T043",
+  "exercise": "run-length-encoding",
+  "tool_versions": {
+    "python": "3.14.6",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "anchor_cases": [
+    "run-length encode a string:empty string",
+    "run-length encode a string:single characters only are encoded without count",
+    "run-length encode a string:string with no single characters"
+  ],
+  "rejecting_case": "run-length encode a string:single characters only are encoded without count",
+  "reference_tests_passed": 13,
+  "mutant_rejected": true,
+  "learner_stub_unsolved": true,
+  "return_code": 0
+}
