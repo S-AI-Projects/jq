@@ -1,0 +1,22 @@
+{
+  "task_id": "R07-T047",
+  "exercise": "etl",
+  "tool_versions": {
+    "python": "3.14.6",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "anchor_cases": [
+    "single letter",
+    "single score with multiple letters",
+    "multiple scores with multiple letters"
+  ],
+  "micro_examples_asserted": 2,
+  "tests_executed": 4,
+  "tests_passed": 4,
+  "tests_failed": 0,
+  "learner_stub_unsolved": true,
+  "return_code": 0
+}

@@ -1,0 +1,8 @@
+{
+  "passed_tests": [
+    "single letter",
+    "single score with multiple letters",
+    "multiple scores with multiple letters",
+    "multiple scores with differing numbers of letters"
+  ]
+}
