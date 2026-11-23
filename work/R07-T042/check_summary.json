@@ -1,0 +1,22 @@
+{
+  "task_id": "R07-T042",
+  "exercise": "tournament",
+  "tool_versions": {
+    "python": "3.14.6",
+    "jq": "jq-1.8.2",
+    "bats": "Bats 1.14.0",
+    "bash": "GNU bash, version 5.3.20(1)-release (aarch64-apple-darwin25.6.0)",
+    "grep": "ggrep (GNU grep) 3.12"
+  },
+  "anchor_cases": [
+    "just the header if no input",
+    "a win is three points, a loss is zero points",
+    "a win can also be expressed as a loss"
+  ],
+  "tests_executed": 12,
+  "tests_passed": 12,
+  "tests_failed": 0,
+  "generation_reproducible": true,
+  "learner_stub_unsolved": true,
+  "return_code": 0
+}
