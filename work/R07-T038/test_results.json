@@ -1,0 +1,8 @@
+{
+  "task_id": "R07-T038",
+  "exercise": "exercises/practice/luhn",
+  "executed_tests": 22,
+  "metadata_fixtures_verified": true,
+  "learner_stub_unsolved": true,
+  "all_cases_passed": true
+}
