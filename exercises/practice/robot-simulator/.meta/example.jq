@@ -1,3 +1,8 @@
+# Turn operation complexity:
+# Domain: strictly 4 cardinal directions {"north", "east", "south", "west"}
+# and 2 turn directions {"left", "right"}.
+# Complexity: O(1) time and O(1) auxiliary space per invocation. The lookup map
+# contains a fixed 4x2 matrix; dictionary lookup and assignment are constant-time operations.
 def turn(t):
   {
     "north": {"left": "west",  "right": "east"},
